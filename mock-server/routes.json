@@ -1,0 +1,14 @@
+{
+    "/api/checkout": "/checkout",
+    "/api/placeOrder": "/orders",
+    "/api/userProfile": "/userProfile",
+    "/api/products": "/products",
+    "/api/cart": "/cart",
+    "/api/auth/login": "/auth",
+    "/api/auth/register": "/users",
+    "/api/auth/user": "/users/1",
+    "/api/user": "/users"
+    
+    
+  }
+  
