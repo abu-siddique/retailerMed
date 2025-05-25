@@ -1,11 +1,11 @@
 import { router } from 'expo-router'
 import React from 'react'
-import { StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { moderateScale, moderateVerticalScale } from 'react-native-size-matters'
 
 import Icons from './common/icons'
 
-export default function Search(props) {
+export default function Search({ placeholder }) {
   //? Handlers
   const handleSearch = () => {
     router.push('/search')
@@ -16,15 +16,18 @@ export default function Search(props) {
     <TouchableOpacity
       onPress={handleSearch}
       style={styles.container}
+      activeOpacity={0.7}
     >
+      <View style={styles.iconContainer}>
+        <Icons.EvilIcons 
+          name="search" 
+          size={moderateScale(24)} 
+          color="#5A67D8" 
+        />
+      </View>
       <Text style={styles.text}>
-        Make the most of tools — use search...
+        {placeholder || "Search medicines, health products..."}
       </Text>
-      <Icons.EvilIcons 
-        name="search" 
-        size={moderateScale(24)} 
-        color="#1F2937" 
-      />
     </TouchableOpacity>
   )
 }
@@ -32,19 +35,31 @@ export default function Search(props) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    borderRadius: moderateScale(6),
-    backgroundColor: 'rgba(228, 228, 231, 0.8)',
-    justifyContent: 'space-between',
+    borderRadius: moderateScale(10),
+    backgroundColor: '#F3F4FF',
     alignItems: 'center',
-    padding: moderateScale(4),
+    padding: moderateScale(10),
+    paddingVertical: moderateVerticalScale(12),
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 2,
+  },
+  iconContainer: {
+    marginRight: moderateScale(6),
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   text: {
     flex: 1,
-    paddingVertical: moderateVerticalScale(4),
-    paddingHorizontal: moderateScale(12),
+    paddingVertical: moderateVerticalScale(2),
     textAlign: 'left',
-    color: '#9ca3af',
+    color: '#718096',
     fontSize: moderateScale(14),
-    includeFontPadding: false,  // For better text alignment
+    fontWeight: '400',
+    includeFontPadding: false,
   }
 })

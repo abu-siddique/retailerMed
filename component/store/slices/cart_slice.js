@@ -66,6 +66,16 @@ const cartSlice = createSlice({
       }
     },
 
+    // New action for direct quantity update (used in cart_buttons.jsx)
+    updateCartQuantity: (state, action) => {
+      const { id, quantity } = action.payload;
+      const item = state.cartItems.find(item => item.itemID === id);
+      if (item && quantity >= 1) {
+        item.quantity = Math.min(quantity, 1000); // Cap at 1000 to match MAX_QUANTITY constant
+        Object.assign(state, calculateTotals(state.cartItems));
+      }
+    },
+
     clearCart: (state) => {
       state.cartItems = [];
       state.totalItems = 0;
@@ -81,6 +91,7 @@ export const {
   increaseQuantity,
   decreaseQuantity,
   updateQuantity,
+  updateCartQuantity,
   clearCart,
 } = cartSlice.actions;
 

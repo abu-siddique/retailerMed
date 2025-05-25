@@ -7,8 +7,7 @@
     "/api/auth/login": "/auth",
     "/api/auth/register": "/users",
     "/api/auth/user": "/users/1",
-    "/api/user": "/users"
-    
-    
-  }
-  
+    "/api/user": "/users",
+    "/api/category": "/categories",
+    "/api/category/:id": "/categories/:id"
+}

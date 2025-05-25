@@ -54,3 +54,8 @@ Join our community of developers creating universal apps.
 export ANDROID_HOME=/Users/asiddi29/Library/Android/sdk
 export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 adb -d start-server
+
+
+export ANDROID_HOME=$HOME/Library/Android/sdk && export PATH=$PATH:$ANDROID_HOME/emulator && export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+git push https://abu-siddique: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@github.com/abu-siddique/retailerMed.git

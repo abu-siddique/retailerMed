@@ -11,6 +11,43 @@ if (!db.has('otps').value()) {
 if (!db.has('users').value()) {
   db.set('users', []).write();
 }
+if (!db.has('categories').value()) {
+  // Initialize with sample category data
+  db.set('categories', [
+    {
+      _id: "cat1",
+      slug: "surgical-items",
+      name: "Surgical & Medical",
+      color: "#4E9FDC",
+      image: "surgical.png",
+      createdAt: Date.now()
+    },
+    {
+      _id: "cat2",
+      slug: "medicines",
+      name: "Medicines",
+      color: "#E74C3C",
+      image: "medicine.png",
+      createdAt: Date.now()
+    },
+    {
+      _id: "cat3",
+      slug: "household-hygiene",
+      name: "Home & Hygiene",
+      color: "#27AE60",
+      image: "household.png",
+      createdAt: Date.now()
+    },
+    {
+      _id: "cat4",
+      slug: "wellness",
+      name: "Wellness & Health",
+      color: "#F39C12",
+      image: "wellness.jpg",
+      createdAt: Date.now()
+    }
+  ]).write();
+}
 
 server.use(middlewares);
 server.use(jsonServer.bodyParser);
@@ -76,15 +113,18 @@ server.post('/api/auth/otp/verify', (req, res) => {
 server.get('/api/user/me', (req, res) => {
   const auth = req.headers.authorization || '';
   const match = auth.match(/fake-jwt-token-(\d+)/);
+  console.log('auth', auth);
   if (!match) {
     return res.status(401).json({ error: 'Not authenticated' });
   }
   const userId = match[1];
   const user = db.get('users').find({ _id: userId }).value();
   if (!user) {
-    return res.status(401).json({ error: 'User not found' });
+    return res.status(404).json({ error: 'User not found' });
   }
   const { password, ...userSafe } = user;
+
+  console.log('userSafe', userSafe);
   res.json(userSafe);
 });
 
@@ -169,9 +209,84 @@ server.delete('/api/user/:id', (req, res) => {
   res.status(204).end();
 });
 
-// Fallback to default router
-server.use(router);
 
-server.listen(3000, () => {
-  console.log('JSON-Server running on http://localhost:3000');
+
+/**
+ * GET /api/category
+ * Returns all categories
+ */
+server.get('/api/category', (req, res) => {
+  const categories = db.get('categories').value();
+  res.json({ data: { categories } });
+});
+
+/**
+ * GET /api/category/:id
+ * Returns a single category by ID
+ */
+server.get('/api/category/:id', (req, res) => {
+  const { id } = req.params;
+  const category = db.get('categories').find({ _id: id }).value();
+  
+  if (!category) {
+    return res.status(404).json({ error: 'Category not found' });
+  }
+  
+  res.json({ data: category });
+});
+
+/**
+ * PUT /api/category/:id
+ * Updates a category
+ * Expects body with category data
+ */
+server.put('/api/category/:id', (req, res) => {
+  const { id } = req.params;
+  const updates = req.body;
+  
+  // Check if category exists
+  const category = db.get('categories').find({ _id: id }).value();
+  if (!category) {
+    return res.status(404).json({ error: 'Category not found' });
+  }
+  
+  // Update the category
+  const updated = db.get('categories')
+    .find({ _id: id })
+    .assign({ ...updates, updatedAt: Date.now() })
+    .write();
+    
+  res.json({ data: updated });
+});
+
+/**
+ * POST /api/category
+ * Creates a new category
+ * Expects body with category data
+ */
+server.post('/api/category', (req, res) => {
+  const newCategory = req.body;
+  
+  // Generate ID if not provided
+  if (!newCategory._id) {
+    newCategory._id = `cat${Date.now()}`;
+  }
+  
+  // Add timestamps
+  newCategory.createdAt = Date.now();
+  
+  // Add to database
+  db.get('categories')
+    .push(newCategory)
+    .write();
+    
+  res.status(201).json({ data: newCategory });
+});
+
+
+// Fallback to default router
+// server.use(router);
+
+server.listen(3000, '0.0.0.0' ,() => {
+  console.log('JSON-Server running on http://0.0.0.0:3000');
 });

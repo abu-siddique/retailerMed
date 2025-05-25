@@ -1,15 +1,16 @@
-import Clipboard from '@react-native-clipboard/clipboard';
+import { Ionicons } from '@expo/vector-icons';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
+import * as Clipboard from 'expo-clipboard';
 import { Stack, useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
-import { Keyboard, Platform, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Image, Keyboard, Platform, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 import Toast from 'react-native-toast-message';
 import { useDispatch } from 'react-redux';
 import Button from '../../component/common/button';
 import { useSendOtpMutation, useVerifyOtpMutation } from '../../component/services';
 import { userLogin } from '../../component/store';
-import Logo from '../../svgs/logo.svg';
+import Logo from '../../svgs/medclavis_logo_laptop.png';
 
 const RESEND_TIMEOUT = 30; // Seconds
 
@@ -40,7 +41,7 @@ export default function LoginScreen() {
   useEffect(() => {
     const checkClipboard = async () => {
       try {
-        const text = await Clipboard.getString();
+        const text = await Clipboard.getStringAsync();
         const otpMatch = text.match(/\b\d{6}\b/);
         if (otpMatch && stage === 'otp') {
             setOtp(otpMatch[0] || '') 
@@ -57,25 +58,89 @@ export default function LoginScreen() {
   // SMS Retriever (Android)
   useEffect(() => {
     if (Platform.OS === 'android') {
-      const { request, SMS } = require('react-native-sms-retriever');
-      
-      const listenForSMS = async () => {
-        try {
-          await request();
-          const sms = await SMS.startRetriever();
-          const otpMatch = sms.message.match(/\b\d{6}\b/);
-          if (otpMatch) {
-            setOtp(otpMatch[0] || '') 
-            handleVerifyOtp(otpMatch[0] || '')
-          }
-        } catch (err) {
-          console.log('SMS retriever error:', err);
-        }
+      // Create a more robust SMS retriever mock
+      const mockSmsRetriever = {
+        // Direct function properties
+        removeAllListeners: () => {},
+        requestPhoneNumber: () => Promise.resolve(''),
+        startOtpListener: () => Promise.resolve(''),
+        stopOtpListener: () => Promise.resolve(''),
+        request: () => Promise.resolve(''),
+        
+        // Nested properties with full structure
+        SMS: {
+          startRetriever: () => Promise.resolve({ message: null }),
+          stopRetriever: () => Promise.resolve('')
+        },
+        
+        // Handle any other potential property access
+        get: function() { return () => Promise.resolve('') }
       };
+      
+      // Make this a global variable
+      global.SMS_MODULE = mockSmsRetriever;
+      
+      // Create a fully non-null mock of the module
+      const smsRetrieverProxy = new Proxy(mockSmsRetriever, {
+        get: function(target, prop) {
+          if (prop in target) {
+            return target[prop];
+          }
+          // Return a function for any missing property
+          return typeof prop === 'symbol' 
+            ? () => {} 
+            : () => Promise.resolve('');
+        }
+      });
+      
+      // Override require for the SMS retriever module
+      try {
+        const originalRequire = global.require || global.__r;
+        global.require = function(moduleName) {
+          if (moduleName === 'react-native-sms-retriever') {
+            return smsRetrieverProxy;
+          }
+          return originalRequire(moduleName);
+        };
+      } catch (error) {
+        console.log('Failed to override require:', error);
+      }
+      
+      try {
+        const listenForSMS = async () => {
+          try {
+            await global.SMS_MODULE.request();
+            const smsResponse = await global.SMS_MODULE.SMS.startRetriever();
+            if (smsResponse && smsResponse.message) {
+              const otpMatch = smsResponse.message.match(/\b\d{6}\b/);
+              if (otpMatch) {
+                setOtp(otpMatch[0] || '');
+                handleVerifyOtp(otpMatch[0] || '');
+              }
+            }
+          } catch (err) {
+            console.log('SMS retriever operation failed:', err);
+            // Continue with the app even if SMS retriever fails
+          }
+        };
 
-      listenForSMS();
+        listenForSMS();
+        
+        // Cleanup function
+        return () => {
+          try {
+            if (global.SMS_MODULE && global.SMS_MODULE.SMS && typeof global.SMS_MODULE.SMS.stopRetriever === 'function') {
+              global.SMS_MODULE.SMS.stopRetriever();
+            }
+          } catch (error) {
+            // Silently handle cleanup errors
+          }
+        };
+      } catch (error) {
+        console.log('SMS retriever setup failed:', error);
+      }
     }
-  }, []);
+  }, [stage]);
 
   const handleSendOtp = (phone) => {
     Keyboard.dismiss();
@@ -121,7 +186,18 @@ export default function LoginScreen() {
       .then((data) => {
         console.log('OTP verified:', data);
         dispatch(userLogin({ token: data.token, userData: data.user }));
-        router.back();
+        
+        try {
+          // Use same navigation logic as handleGoBack
+          if (router.canGoBack()) {
+            router.back();
+          } else {
+            router.replace('/');
+          }
+        } catch (error) {
+          console.log('Navigation error:', error);
+          router.push('/');
+        }
       })
       .catch((err) => {
         console.log('Verification error:', err);
@@ -136,16 +212,50 @@ export default function LoginScreen() {
       });
   };
 
+  const handleGoBack = () => {
+    try {
+      // First try to go back, if possible
+      if (router.canGoBack()) {
+        router.back();
+      } else {
+        // Only go to home if no back history is available
+        router.replace('/');
+      }
+    } catch (error) {
+      console.log('Navigation error:', error);
+      // Fallback navigation if everything fails
+      router.push('/');
+    }
+  };
+
   return (
     <>
+      <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" translucent={false} />
+      
       <Stack.Screen
         options={{
-          title: 'Login',
-          headerBackTitleVisible: false,
+          title: "",
+          headerShown: true,
+          headerLeft: () => (
+            <TouchableOpacity 
+              onPress={handleGoBack} 
+              style={{ marginLeft: 16, padding: 8 }}
+            >
+              <Ionicons name="arrow-back" size={24} color="blue" />
+            </TouchableOpacity>
+          ),
+          headerStyle: {
+            backgroundColor: '#FFFFFF',
+          },
+          headerTitleStyle: {
+            color: '#000000',
+            fontWeight: '600',
+          },
+          headerShadowVisible: true,
         }}
       />
       <View style={styles.container}>
-        <Logo style={styles.logo} />
+        <Image source={Logo} style={styles.logo} />
 
         {stage === 'phone' ? (
           <View style={styles.phoneStage}>
@@ -222,6 +332,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: verticalScale(40),
     marginBottom: verticalScale(60),
+    resizeMode: 'contain',
   },
   title: {
     fontSize: moderateScale(22),

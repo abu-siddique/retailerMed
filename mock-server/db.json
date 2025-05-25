@@ -1,162 +1,69 @@
 {
+  "otps": [],
   "users": [
     {
-      "_id": "1",
-      "name": "Alice Smith",
-      "email": "alice@example.com",
-      "password": "password123",
-      "isAdmin": false
-    },
-    {
-      "_id": "2",
-      "name": "Bob Jones",
-      "email": "bob@example.com",
-      "password": "hunter2",
-      "isAdmin": true
-    },
-    {
-      "_id": "1746766581379",
-      "phone": 9365870735,
-      "createdAt": 1746766581379,
+      "_id": "1747492371207",
+      "phone": "12346",
+      "createdAt": 1747492371207,
       "verificationStatus": "unverified"
     },
     {
-      "_id": "1746766711057",
-      "phone": 7896268809,
-      "createdAt": 1746766711057,
-      "verificationStatus": "unverified"
-    },
-    {
-      "_id": "1746766845820",
-      "phone": "9365870735",
-      "createdAt": 1746766845820,
-      "verificationStatus": "unverified"
-    },
-    {
-      "_id": "1746769932581",
-      "phone": "1234567",
-      "createdAt": 1746769932581,
-      "verificationStatus": "unverified"
-    },
-    {
-      "_id": "1746770177041",
+      "_id": "1747492493832",
       "phone": "123",
-      "createdAt": 1746770177041,
+      "createdAt": 1747492493832,
       "verificationStatus": "unverified"
     },
     {
-      "_id": "1746777030471",
-      "phone": 1234,
-      "createdAt": 1746777030471,
-      "verificationStatus": "unverified"
-    },
-    {
-      "_id": "1746777206342",
-      "phone": "12",
-      "createdAt": 1746777206342,
-      "verificationStatus": "unverified"
-    },
-    {
-      "_id": "1746777946575",
-      "phone": "1234569789",
-      "createdAt": 1746777946575,
-      "verificationStatus": "unverified"
-    },
-    {
-      "_id": "1746778275677",
-      "phone": "12345",
-      "createdAt": 1746778275677,
-      "verificationStatus": "unverified"
-    },
-    {
-      "_id": "1746778425925",
+      "_id": "1747492536519",
       "phone": "1234",
-      "createdAt": 1746778425925,
+      "createdAt": 1747492536519,
       "verificationStatus": "unverified"
     },
     {
-      "_id": "1747150489526",
-      "phone": "7896",
-      "createdAt": 1747150489526,
+      "_id": "1747492868628",
+      "phone": "12345",
+      "createdAt": 1747492868628,
       "verificationStatus": "unverified"
     },
     {
-      "_id": "1747154107562",
-      "phone": "1213",
-      "createdAt": 1747154107562,
+      "_id": "1747498971101",
+      "phone": "123455",
+      "createdAt": 1747498971101,
       "verificationStatus": "unverified"
     }
   ],
-  "otps": [
+  "categories": [
     {
-      "phone": "78765434",
-      "otp": "483131",
-      "createdAt": 1746768701266
+      "_id": "cat1",
+      "slug": "surgical-items",
+      "name": "Surgical & Medical",
+      "color": "#4E9FDC",
+      "image": "surgical.png",
+      "createdAt": 1748148515290
     },
     {
-      "phone": "1234556",
-      "otp": "633239",
-      "createdAt": 1746769811245
+      "_id": "cat2",
+      "slug": "medicines",
+      "name": "Medicines",
+      "color": "#E74C3C",
+      "image": "medicine.png",
+      "createdAt": 1748148515290
     },
     {
-      "phone": "123455687",
-      "otp": "573905",
-      "createdAt": 1746769819120
+      "_id": "cat3",
+      "slug": "household-hygiene",
+      "name": "Home & Hygiene",
+      "color": "#27AE60",
+      "image": "household.png",
+      "createdAt": 1748148515290
     },
     {
-      "phone": "123345",
-      "otp": "334921",
-      "createdAt": 1746769847441
-    },
-    {
-      "phone": "123456",
-      "otp": "987228",
-      "createdAt": 1746770521276
-    },
-    {
-      "phone": "1234567877",
-      "otp": "297585",
-      "createdAt": 1746778160317
-    },
-    {
-      "phone": "12345",
-      "otp": "153795",
-      "createdAt": 1746778962399
-    },
-    {
-      "phone": "1232",
-      "otp": "889850",
-      "createdAt": 1746779371994
-    },
-    {
-      "phone": "566",
-      "otp": "118923",
-      "createdAt": 1746779838935
-    },
-    {
-      "phone": "766",
-      "otp": "128659",
-      "createdAt": 1746780036093
-    },
-    {
-      "phone": "877",
-      "otp": "154660",
-      "createdAt": 1746780135793
-    },
-    {
-      "phone": "765",
-      "otp": "764987",
-      "createdAt": 1746780169435
-    },
-    {
-      "phone": "123",
-      "otp": "235332",
-      "createdAt": 1746780535349
-    },
-    {
-      "phone": "1234567",
-      "otp": "633709",
-      "createdAt": 1746784064125
+      "_id": "cat4",
+      "slug": "wellness",
+      "name": "Wellness & Health",
+      "color": "#F39C12",
+      "image": "wellness.jpg",
+      "createdAt": 1748148515290
     }
   ]
 }

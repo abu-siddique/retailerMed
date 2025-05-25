@@ -8,16 +8,19 @@
     "scheme": "retailermed",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "jsEngine": "hermes",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "jsEngine": "hermes"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/react-logo.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true,
-      "package": "com.abusiddique198.retailerMed"
+      "edgeToEdgeEnabled": false,
+      "package": "com.abusiddique198.retailerMed",
+      "softwareKeyboardLayoutMode": "resize"
     },
     "web": {
       "bundler": "metro",
@@ -47,6 +50,12 @@
         "projectId": "0d5169a3-60cd-4515-8e8c-0b1ee8a961b2"
       }
     },
-    "owner": "abusiddique198"
+    "owner": "abusiddique198",
+    "androidStatusBar": {
+      "barStyle": "dark-content",
+      "backgroundColor": "#FFFFFF",
+      "translucent": false,
+      "hidden": false
+    }
   }
 }

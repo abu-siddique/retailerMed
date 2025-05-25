@@ -1,12 +1,22 @@
-import React from 'react'
-import { Text, View } from 'react-native'
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
-const OrderHistory = () => {
+export default function OrderHistory() {
   return (
-    <View>
-      <Text>OrderHistory</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Order History</Text>
     </View>
-  )
+  );
 }
 
-export default OrderHistory
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 16,
+    backgroundColor: '#fff',
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+});

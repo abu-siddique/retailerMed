@@ -10,6 +10,7 @@ const apiSlice = createApi({
       // Only add token for certain endpoints
       console.log(`Base URL: ${process.env.EXPO_PUBLIC_BASE_URL}`)
       const protectedEndpoints = ['checkout', 'placeOrder', 'userProfile']
+      console.log(' Endpoints:', endpoint)
       if (protectedEndpoints.includes(endpoint)) {
         const token = getState().user.token
         if (token) headers.set('authorization', `Bearer ${token}`)
@@ -17,7 +18,7 @@ const apiSlice = createApi({
       return headers
     },
   }),
-  tagTypes: ['User'],
+  tagTypes: ['User', 'Category'],
   endpoints: builder => ({})
 })
 

@@ -1,8 +1,8 @@
-import { userLogout } from '@/store';
 import { router } from 'expo-router';
 import { useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useGetUserInfoQuery } from '../services';
+import { userLogout } from '../store';
 import useVerify from './use_verify';
 
 export default function useUserInfo() {
@@ -21,7 +21,9 @@ export default function useUserInfo() {
     }
   }, [isError, dispatch]);
 
-  const isLoginVerify = Boolean(isVerify && !isLoading && data?.data);
+  console.log('useUserInfo', data, isLoading, error, isError);
+
+  const isLoginVerify = Boolean(isVerify && !isLoading && data?._id);
 
   const mustAuthAction = useCallback(
     (nextAction, redirectPath) => {
