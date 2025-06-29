@@ -1,10 +1,10 @@
 import React from 'react'
 import {
-    ActivityIndicator,
-    Animated,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
+  ActivityIndicator,
+  Animated,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
 } from 'react-native'
 import { moderateScale, verticalScale } from 'react-native-size-matters'
 
@@ -12,6 +12,7 @@ export const Button = ({
   isLoading = false,
   children,
   style,
+  textStyle,
   isRounded = false,
   onPress,
   disabled = false,
@@ -52,7 +53,7 @@ export const Button = ({
         {isLoading ? (
           <ActivityIndicator color="#fff" size={moderateScale(24)} />
         ) : (
-          <Text style={styles.buttonText}>{children}</Text>
+          <Text style={[styles.buttonText, textStyle]}>{children}</Text>
         )}
       </TouchableOpacity>
     </Animated.View>
@@ -83,7 +84,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center',
-    minWidth: moderateScale(140),
+    minWidth: moderateScale(120),
     maxWidth: moderateScale(300),
     marginVertical: verticalScale(4),
     shadowColor: '#000',

@@ -1,5 +1,21 @@
 {
-  "otps": [],
+  "otps": [
+    {
+      "phone": "1265",
+      "otp": "577810",
+      "createdAt": 1748188646185
+    },
+    {
+      "phone": "9365870735",
+      "otp": "221909",
+      "createdAt": 1748191167443
+    },
+    {
+      "phone": "123466",
+      "otp": "518524",
+      "createdAt": 1748192788105
+    }
+  ],
   "users": [
     {
       "_id": "1747492371207",
@@ -29,6 +45,24 @@
       "_id": "1747498971101",
       "phone": "123455",
       "createdAt": 1747498971101,
+      "verificationStatus": "unverified"
+    },
+    {
+      "_id": "1748193801576",
+      "phone": "123456",
+      "createdAt": 1748193801577,
+      "verificationStatus": "unverified"
+    },
+    {
+      "_id": "1748193984321",
+      "phone": "345",
+      "createdAt": 1748193984321,
+      "verificationStatus": "unverified"
+    },
+    {
+      "_id": "1750252369269",
+      "phone": "1235",
+      "createdAt": 1750252369269,
       "verificationStatus": "unverified"
     }
   ],
@@ -65,5 +99,1081 @@
       "image": "wellness.jpg",
       "createdAt": 1748148515290
     }
-  ]
+  ],
+  "products": {
+    "new_arrivals_medicine": [
+      {
+        "_id": 1001,
+        "name": "Azithromycin 500mg",
+        "title": "Azithromycin 500mg Tablets",
+        "price": 249.99,
+        "ptr": 210.5,
+        "mrp": 299,
+        "buy": 10,
+        "get": 5,
+        "discount": 15,
+        "inStock": 120,
+        "sold": 45,
+        "quantity": {
+          "value": 6,
+          "unit": "tablets",
+          "package": "strip"
+        },
+        "dosageForm": "Tablet",
+        "manufacturer": "Zydus Pharma",
+        "category": "cat2",
+        "isNewArrival": true,
+        "gst": 5,
+        "composition": "Azithromycin 500mg per tablet",
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=400&auto=format&fit=crop",
+            "_id": "1001-1"
+          }
+        ],
+        "product_info": "<div><h2>Azithromycin 500mg</h2><p>Used for bacterial infections including respiratory tract, skin and ear infections.</p></div>"
+      },
+      {
+        "_id": 1002,
+        "name": "Montelukast 10mg",
+        "title": "Montelukast 10mg Tablets",
+        "price": 299.99,
+        "ptr": 249.5,
+        "mrp": 320,
+        "discount": 12,
+        "inStock": 85,
+        "sold": 32,
+        "quantity": {
+          "value": 10,
+          "unit": "tablets",
+          "package": "strip"
+        },
+        "dosageForm": "Tablet",
+        "manufacturer": "Cipla Ltd",
+        "category": "cat2",
+        "isNewArrival": true,
+        "gst": 5,
+        "composition": "Montelukast Sodium equivalent to Montelukast 10mg per tablet",
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1585435557481-3e9de8d5cdd9?q=80&w=400&auto=format&fit=crop",
+            "_id": "1002-1"
+          }
+        ],
+        "product_info": "<div><h2>Montelukast 10mg</h2><p>For prevention and treatment of asthma and relief of seasonal allergic rhinitis symptoms.</p></div>"
+      },
+      {
+        "_id": 1003,
+        "name": "Rosuvastatin 20mg",
+        "title": "Rosuvastatin 20mg Tablets",
+        "price": 399.99,
+        "ptr": 350,
+        "mrp": 450,
+        "discount": 10,
+        "inStock": 100,
+        "sold": 28,
+        "buy": 10,
+        "get": 5,
+        "quantity": {
+          "value": 10,
+          "unit": "tablets",
+          "package": "strip"
+        },
+        "dosageForm": "Tablet",
+        "manufacturer": "Sun Pharma",
+        "category": "cat2",
+        "isNewArrival": true,
+        "gst": 5,
+        "composition": "Rosuvastatin Calcium equivalent to Rosuvastatin 20mg per tablet",
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1550572017-edd951b55104?q=80&w=400&auto=format&fit=crop",
+            "_id": "1003-1"
+          }
+        ],
+        "product_info": "<div><h2>Rosuvastatin 20mg</h2><p>Used to lower cholesterol and triglycerides in the blood.</p></div>"
+      },
+      {
+        "_id": 1004,
+        "name": "Ondansetron 4mg",
+        "title": "Ondansetron 4mg ODT",
+        "price": 189.99,
+        "ptr": 160,
+        "mrp": 210,
+        "discount": 8,
+        "inStock": 150,
+        "sold": 35,
+        "quantity": {
+          "value": 10,
+          "unit": "tablets",
+          "package": "strip"
+        },
+        "dosageForm": "Orally Disintegrating Tablet",
+        "manufacturer": "GSK Pharma",
+        "category": "cat2",
+        "isNewArrival": true,
+        "gst": 5,
+        "composition": "Ondansetron Hydrochloride equivalent to Ondansetron 4mg per tablet",
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?q=80&w=400&auto=format&fit=crop",
+            "_id": "1004-1"
+          }
+        ],
+        "product_info": "<div><h2>Ondansetron 4mg ODT</h2><p>Prevents nausea and vomiting caused by chemotherapy, radiation therapy, and surgery.</p></div>"
+      },
+      {
+        "_id": 1005,
+        "name": "Metformin 500mg",
+        "title": "Metformin 500mg Extended-Release",
+        "price": 159.99,
+        "ptr": 130,
+        "mrp": 180,
+        "discount": 11,
+        "inStock": 200,
+        "sold": 42,
+        "quantity": {
+          "value": 15,
+          "unit": "tablets",
+          "package": "box"
+        },
+        "dosageForm": "Extended-Release Tablet",
+        "manufacturer": "Lupin Ltd",
+        "category": "cat2",
+        "isNewArrival": true,
+        "gst": 5,
+        "composition": "Metformin Hydrochloride 500mg per tablet",
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1628771065518-0d82f1938462?q=80&w=400&auto=format&fit=crop",
+            "_id": "1005-1"
+          }
+        ],
+        "product_info": "<div><h2>Metformin 500mg ER</h2><p>Used to treat type 2 diabetes by improving blood sugar control.</p></div>"
+      },
+      {
+        "_id": 1006,
+        "name": "Vitamin D3 60,000 IU",
+        "title": "Vitamin D3 60,000 IU Capsules",
+        "price": 249.99,
+        "ptr": 200,
+        "mrp": 275,
+        "discount": 9,
+        "inStock": 180,
+        "sold": 60,
+        "quantity": {
+          "value": 4,
+          "unit": "capsules",
+          "package": "strip"
+        },
+        "dosageForm": "Capsule",
+        "manufacturer": "USV Ltd",
+        "category": "cat2",
+        "isNewArrival": true,
+        "gst": 5,
+        "composition": "Cholecalciferol (Vitamin D3) 60,000 IU per capsule",
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1577042939454-8b29ebe0fc34?q=80&w=400&auto=format&fit=crop",
+            "_id": "1006-1"
+          }
+        ],
+        "product_info": "<div><h2>Vitamin D3 60,000 IU</h2><p>Weekly supplement for vitamin D deficiency treatment.</p></div>"
+      },
+      {
+        "_id": 1007,
+        "name": "Pantoprazole 40mg",
+        "title": "Pantoprazole 40mg Gastro-resistant Tablets",
+        "price": 179.99,
+        "ptr": 150,
+        "mrp": 199,
+        "discount": 10,
+        "inStock": 130,
+        "sold": 38,
+        "quantity": {
+          "value": 14,
+          "unit": "tablets",
+          "package": "strip"
+        },
+        "dosageForm": "Enteric-Coated Tablet",
+        "manufacturer": "Alkem Labs",
+        "category": "cat2",
+        "isNewArrival": true,
+        "gst": 5,
+        "composition": "Pantoprazole Sodium equivalent to Pantoprazole 40mg per tablet",
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1586015555751-63bb77f4322a?q=80&w=400&auto=format&fit=crop",
+            "_id": "1007-1"
+          }
+        ],
+        "product_info": "<div><h2>Pantoprazole 40mg</h2><p>Reduces stomach acid production. Used for gastroesophageal reflux disease and ulcers.</p></div>"
+      },
+      {
+        "_id": 1008,
+        "name": "Cefpodoxime 200mg",
+        "title": "Cefpodoxime 200mg Tablets",
+        "price": 349.99,
+        "ptr": 300,
+        "mrp": 380,
+        "discount": 8,
+        "inStock": 90,
+        "sold": 25,
+        "quantity": {
+          "value": 10,
+          "unit": "tablets",
+          "package": "strip"
+        },
+        "dosageForm": "Tablet",
+        "manufacturer": "Mankind Pharma",
+        "category": "cat2",
+        "isNewArrival": true,
+        "gst": 5,
+        "composition": "Cefpodoxime Proxetil equivalent to Cefpodoxime 200mg per tablet",
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1558956397-7f6aea7aaab4?q=80&w=400&auto=format&fit=crop",
+            "_id": "1008-1"
+          }
+        ],
+        "product_info": "<div><h2>Cefpodoxime 200mg</h2><p>Antibiotic used to treat bacterial infections of the respiratory tract, urinary tract, and skin.</p></div>"
+      },
+      {
+        "_id": 1009,
+        "name": "Fexofenadine 180mg",
+        "title": "Fexofenadine 180mg Tablets",
+        "price": 219.99,
+        "ptr": 175,
+        "mrp": 240,
+        "discount": 12,
+        "inStock": 110,
+        "sold": 40,
+        "quantity": {
+          "value": 10,
+          "unit": "tablets",
+          "package": "strip"
+        },
+        "dosageForm": "Tablet",
+        "manufacturer": "Dr. Reddy's Labs",
+        "category": "cat2",
+        "isNewArrival": true,
+        "gst": 5,
+        "composition": "Fexofenadine Hydrochloride 180mg per tablet",
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1585435557481-3e9de8d5cdd9?q=80&w=400&auto=format&fit=crop",
+            "_id": "1009-1"
+          }
+        ],
+        "product_info": "<div><h2>Fexofenadine 180mg</h2><p>Non-drowsy antihistamine that relieves allergy symptoms such as sneezing, runny nose, and itchy eyes.</p></div>"
+      },
+      {
+        "_id": 1010,
+        "name": "Losartan 50mg",
+        "title": "Losartan 50mg Potassium Tablets",
+        "price": 189.99,
+        "ptr": 160,
+        "mrp": 210,
+        "discount": 10,
+        "inStock": 140,
+        "sold": 32,
+        "quantity": {
+          "value": 15,
+          "unit": "tablets",
+          "package": "strip"
+        },
+        "dosageForm": "Tablet",
+        "manufacturer": "Torrent Pharma",
+        "category": "cat2",
+        "isNewArrival": true,
+        "gst": 5,
+        "composition": "Losartan Potassium 50mg per tablet",
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1559136560-16ad036d85d3?q=80&w=400&auto=format&fit=crop",
+            "_id": "1010-1"
+          }
+        ],
+        "product_info": "<div><h2>Losartan 50mg</h2><p>Used to treat high blood pressure and to protect the kidneys from damage due to diabetes.</p></div>"
+      }
+    ],
+    "new_arrivals_surgical": [
+      {
+        "_id": 2001,
+        "name": "Digital Pulse Oximeter",
+        "title": "Fingertip Pulse Oximeter - SpO2 Monitor",
+        "price": 1299.99,
+        "ptr": 1100,
+        "mrp": 1500,
+        "discount": 15,
+        "inStock": 50,
+        "sold": 28,
+        "category": "cat1",
+        "isNewArrival": true,
+        "gst": 12,
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=400&auto=format&fit=crop",
+            "_id": "2001-1"
+          }
+        ],
+        "product_info": "<div><h2>Digital Pulse Oximeter</h2><p>Accurate SpO2 and pulse rate readings with LED display. Battery operated.</p></div>",
+        "package_type": "Box",
+        "manufacturer": "MedTech Devices"
+      },
+      {
+        "_id": 2002,
+        "name": "Disposable Face Masks",
+        "title": "3-Ply Medical Grade Face Masks",
+        "price": 299.99,
+        "ptr": 250,
+        "mrp": 350,
+        "discount": 15,
+        "inStock": 200,
+        "sold": 85,
+        "quantity": {
+          "value": 50,
+          "unit": "masks",
+          "package": "box"
+        },
+        "category": "cat1",
+        "isNewArrival": true,
+        "gst": 12,
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1605845632388-e4c165a7b50a?q=80&w=400&auto=format&fit=crop",
+            "_id": "2002-1"
+          }
+        ],
+        "product_info": "<div><h2>Disposable Face Masks</h2><p>3-ply protection with melt-blown filter layer. High bacterial filtration efficiency.</p></div>",
+        "package_type": "Box",
+        "manufacturer": "SafeMed"
+      },
+      {
+        "_id": 2003,
+        "name": "Digital Thermometer",
+        "title": "Infrared Non-Contact Thermometer",
+        "price": 1499.99,
+        "ptr": 1300,
+        "mrp": 1700,
+        "discount": 12,
+        "inStock": 40,
+        "sold": 22,
+        "category": "cat1",
+        "isNewArrival": true,
+        "gst": 12,
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1588774590081-64d66337cea2?q=80&w=400&auto=format&fit=crop",
+            "_id": "2003-1"
+          }
+        ],
+        "product_info": "<div><h2>Digital Thermometer</h2><p>Non-contact infrared technology with fever alarm and memory function.</p></div>",
+        "package_type": "Box",
+        "manufacturer": "DigiHealth"
+      },
+      {
+        "_id": 2004,
+        "name": "Sterile Surgical Gloves",
+        "title": "Latex-Free Surgical Gloves",
+        "price": 399.99,
+        "ptr": 350,
+        "mrp": 450,
+        "discount": 10,
+        "inStock": 150,
+        "sold": 45,
+        "quantity": {
+          "value": 10,
+          "unit": "pairs",
+          "package": "box"
+        },
+        "category": "cat1",
+        "isNewArrival": true,
+        "gst": 12,
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1584744982491-665216d95f8b?q=80&w=400&auto=format&fit=crop",
+            "_id": "2004-1"
+          }
+        ],
+        "product_info": "<div><h2>Sterile Surgical Gloves</h2><p>Powder-free, latex-free gloves for medical procedures. Individually wrapped pairs.</p></div>",
+        "package_type": "Box",
+        "manufacturer": "MediPro"
+      },
+      {
+        "_id": 2005,
+        "name": "Wound Dressing Kit",
+        "title": "Sterile Wound Care Kit",
+        "price": 599.99,
+        "ptr": 530,
+        "mrp": 650,
+        "discount": 8,
+        "inStock": 60,
+        "sold": 18,
+        "category": "cat1",
+        "isNewArrival": true,
+        "gst": 12,
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1603398938378-e54eab446dde?q=80&w=400&auto=format&fit=crop",
+            "_id": "2005-1"
+          }
+        ],
+        "product_info": "<div><h2>Wound Dressing Kit</h2><p>Complete sterile kit with gauze, antiseptic, tape, and scissors.</p></div>",
+        "package_type": "Kit",
+        "manufacturer": "SafeCare"
+      },
+      {
+        "_id": 2006,
+        "name": "Digital BP Monitor",
+        "title": "Automatic Blood Pressure Monitor",
+        "price": 1999.99,
+        "ptr": 1800,
+        "mrp": 2200,
+        "discount": 10,
+        "inStock": 35,
+        "sold": 15,
+        "category": "cat1",
+        "isNewArrival": true,
+        "gst": 12,
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1581595219315-a187dd60a7ef?q=80&w=400&auto=format&fit=crop",
+            "_id": "2006-1"
+          }
+        ],
+        "product_info": "<div><h2>Digital BP Monitor</h2><p>Automatic upper arm blood pressure monitor with irregular heartbeat detection.</p></div>",
+        "package_type": "Box",
+        "manufacturer": "OmronTech"
+      },
+      {
+        "_id": 2007,
+        "name": "First Aid Kit",
+        "title": "Comprehensive First Aid Box",
+        "price": 899.99,
+        "ptr": 800,
+        "mrp": 999,
+        "discount": 10,
+        "inStock": 70,
+        "sold": 25,
+        "category": "cat1",
+        "isNewArrival": true,
+        "gst": 12,
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1603398938378-e54eab446dde?q=80&w=400&auto=format&fit=crop",
+            "_id": "2007-1"
+          }
+        ],
+        "product_info": "<div><h2>First Aid Kit</h2><p>Complete emergency kit with 100+ items including bandages, antiseptics, and emergency tools.</p></div>",
+        "package_type": "Box",
+        "manufacturer": "SafetyFirst"
+      },
+      {
+        "_id": 2008,
+        "name": "Nebulizer Machine",
+        "title": "Portable Compressor Nebulizer System",
+        "price": 1799.99,
+        "ptr": 1600,
+        "mrp": 2000,
+        "discount": 10,
+        "inStock": 30,
+        "sold": 12,
+        "category": "cat1",
+        "isNewArrival": true,
+        "gst": 12,
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1631549916768-4119b2e5f926?q=80&w=400&auto=format&fit=crop",
+            "_id": "2008-1"
+          }
+        ],
+        "product_info": "<div><h2>Nebulizer Machine</h2><p>Portable compressor nebulizer for respiratory medication delivery with adult and child masks.</p></div>",
+        "package_type": "Box",
+        "manufacturer": "BreathEasy"
+      },
+      {
+        "_id": 2009,
+        "name": "Surgical Suture Kit",
+        "title": "Professional Suture Practice Kit",
+        "price": 1499.99,
+        "ptr": 1300,
+        "mrp": 1650,
+        "discount": 9,
+        "inStock": 25,
+        "sold": 8,
+        "category": "cat1",
+        "isNewArrival": true,
+        "gst": 12,
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=400&auto=format&fit=crop",
+            "_id": "2009-1"
+          }
+        ],
+        "product_info": "<div><h2>Surgical Suture Kit</h2><p>Complete kit with surgical instruments for medical professionals and students.</p></div>",
+        "package_type": "Kit",
+        "manufacturer": "MediSkills"
+      },
+      {
+        "_id": 2010,
+        "name": "Digital Stethoscope",
+        "title": "Electronic Digital Stethoscope",
+        "price": 3999.99,
+        "ptr": 3600,
+        "mrp": 4500,
+        "discount": 12,
+        "inStock": 15,
+        "sold": 5,
+        "category": "cat1",
+        "isNewArrival": true,
+        "gst": 12,
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=400&auto=format&fit=crop",
+            "_id": "2010-1"
+          }
+        ],
+        "product_info": "<div><h2>Digital Stethoscope</h2><p>Advanced electronic stethoscope with noise reduction and Bluetooth connectivity.</p></div>",
+        "package_type": "Box",
+        "manufacturer": "CardioTech"
+      }
+    ],
+    "top_selling_medicine": [
+      {
+        "_id": 3001,
+        "name": "Paracetamol 500mg",
+        "title": "Paracetamol 500mg Tablets",
+        "price": 199.99,
+        "ptr": 150.5,
+        "mrp": 220,
+        "buy": 10,
+        "get": 5,
+        "discount": 10,
+        "inStock": 250,
+        "sold": 1200,
+        "quantity": {
+          "value": 15,
+          "unit": "tablets",
+          "package": "strip"
+        },
+        "dosageForm": "Tablet",
+        "manufacturer": "HealthCare Pharma",
+        "category": "cat2",
+        "isTopSelling": true,
+        "gst": 5,
+        "composition": "Paracetamol 500mg per tablet",
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=400&auto=format&fit=crop",
+            "_id": "3001-1"
+          }
+        ],
+        "product_info": "<div><h2>Paracetamol 500mg</h2><p>For relief of mild to moderate pain and fever. Commonly used for headache and cold symptoms.</p></div>"
+      },
+      {
+        "_id": 3002,
+        "name": "Amoxicillin 500mg",
+        "title": "Amoxicillin 500mg Capsules",
+        "price": 299.99,
+        "ptr": 250,
+        "mrp": 320,
+        "discount": 6,
+        "inStock": 180,
+        "sold": 950,
+        "quantity": {
+          "value": 10,
+          "unit": "capsules",
+          "package": "strip"
+        },
+        "dosageForm": "Capsule",
+        "manufacturer": "Cipla Ltd",
+        "category": "cat2",
+        "isTopSelling": true,
+        "gst": 5,
+        "composition": "Amoxicillin Trihydrate equivalent to Amoxicillin 500mg per capsule",
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?q=80&w=400&auto=format&fit=crop",
+            "_id": "3002-1"
+          }
+        ],
+        "product_info": "<div><h2>Amoxicillin 500mg</h2><p>Antibiotic used to treat a wide variety of bacterial infections.</p></div>"
+      },
+      {
+        "_id": 3003,
+        "name": "Cetirizine 10mg",
+        "title": "Cetirizine 10mg Tablets",
+        "price": 149.99,
+        "ptr": 120,
+        "mrp": 180,
+        "discount": 15,
+        "inStock": 220,
+        "sold": 890,
+        "quantity": {
+          "value": 10,
+          "unit": "tablets",
+          "package": "strip"
+        },
+        "dosageForm": "Tablet",
+        "manufacturer": "Sun Pharma",
+        "category": "cat2",
+        "isTopSelling": true,
+        "gst": 5,
+        "composition": "Cetirizine Dihydrochloride 10mg per tablet",
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?q=80&w=400&auto=format&fit=crop",
+            "_id": "3003-1"
+          }
+        ],
+        "product_info": "<div><h2>Cetirizine 10mg</h2><p>Antihistamine that relieves allergy symptoms such as watery eyes, runny nose, and sneezing.</p></div>"
+      },
+      {
+        "_id": 3004,
+        "name": "Omeprazole 20mg",
+        "title": "Omeprazole 20mg Capsules",
+        "price": 259.99,
+        "ptr": 220,
+        "mrp": 290,
+        "discount": 8,
+        "inStock": 150,
+        "sold": 820,
+        "quantity": {
+          "value": 14,
+          "unit": "capsules",
+          "package": "strip"
+        },
+        "dosageForm": "Capsule",
+        "manufacturer": "Zydus Pharma",
+        "category": "cat2",
+        "isTopSelling": true,
+        "gst": 5,
+        "composition": "Omeprazole 20mg per capsule",
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1585435557481-3e9de8d5cdd9?q=80&w=400&auto=format&fit=crop",
+            "_id": "3004-1"
+          }
+        ],
+        "product_info": "<div><h2>Omeprazole 20mg</h2><p>Reduces stomach acid production. Used for heartburn, GERD, and stomach ulcers.</p></div>"
+      },
+      {
+        "_id": 3005,
+        "name": "Metoprolol 25mg",
+        "title": "Metoprolol 25mg Tablets",
+        "price": 179.99,
+        "ptr": 150,
+        "mrp": 200,
+        "discount": 10,
+        "inStock": 190,
+        "sold": 780,
+        "quantity": {
+          "value": 10,
+          "unit": "tablets",
+          "package": "strip"
+        },
+        "dosageForm": "Tablet",
+        "manufacturer": "Lupin Ltd",
+        "category": "cat2",
+        "isTopSelling": true,
+        "gst": 5,
+        "composition": "Metoprolol Tartrate 25mg per tablet",
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1558956397-7f6aea7aaab4?q=80&w=400&auto=format&fit=crop",
+            "_id": "3005-1"
+          }
+        ],
+        "product_info": "<div><h2>Metoprolol 25mg</h2><p>Beta-blocker used to treat high blood pressure, chest pain, and heart failure.</p></div>"
+      },
+      {
+        "_id": 3006,
+        "name": "Levothyroxine 50mcg",
+        "title": "Levothyroxine 50mcg Tablets",
+        "price": 289.99,
+        "ptr": 250,
+        "mrp": 310,
+        "discount": 7,
+        "inStock": 160,
+        "sold": 750,
+        "quantity": {
+          "value": 30,
+          "unit": "tablets",
+          "package": "bottle"
+        },
+        "dosageForm": "Tablet",
+        "manufacturer": "Abbott",
+        "category": "cat2",
+        "isTopSelling": true,
+        "gst": 5,
+        "composition": "Levothyroxine Sodium 50mcg per tablet",
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1550572017-edd951b55104?q=80&w=400&auto=format&fit=crop",
+            "_id": "3006-1"
+          }
+        ],
+        "product_info": "<div><h2>Levothyroxine 50mcg</h2><p>Thyroid medication used to treat hypothyroidism.</p></div>"
+      },
+      {
+        "_id": 3007,
+        "name": "Atorvastatin 10mg",
+        "title": "Atorvastatin 10mg Tablets",
+        "price": 349.99,
+        "ptr": 300,
+        "mrp": 380,
+        "discount": 8,
+        "inStock": 140,
+        "sold": 690,
+        "quantity": {
+          "value": 10,
+          "unit": "tablets",
+          "package": "strip"
+        },
+        "dosageForm": "Tablet",
+        "manufacturer": "Torrent Pharma",
+        "category": "cat2",
+        "isTopSelling": true,
+        "gst": 5,
+        "composition": "Atorvastatin Calcium equivalent to Atorvastatin 10mg per tablet",
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=400&auto=format&fit=crop",
+            "_id": "3007-1"
+          }
+        ],
+        "product_info": "<div><h2>Atorvastatin 10mg</h2><p>Statin medication that lowers cholesterol and reduces the risk of heart attack.</p></div>"
+      },
+      {
+        "_id": 3008,
+        "name": "Multivitamin Tablets",
+        "title": "Daily Multivitamin & Mineral Tablets",
+        "price": 399.99,
+        "ptr": 350,
+        "mrp": 430,
+        "discount": 7,
+        "inStock": 200,
+        "sold": 650,
+        "quantity": {
+          "value": 60,
+          "unit": "tablets",
+          "package": "bottle"
+        },
+        "dosageForm": "Tablet",
+        "manufacturer": "HealthVit",
+        "category": "cat2",
+        "isTopSelling": true,
+        "gst": 5,
+        "composition": "Multiple vitamins and minerals in balanced proportions",
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1577042939454-8b29ebe0fc34?q=80&w=400&auto=format&fit=crop",
+            "_id": "3008-1"
+          }
+        ],
+        "product_info": "<div><h2>Multivitamin Tablets</h2><p>Complete daily supplement with essential vitamins and minerals.</p></div>"
+      },
+      {
+        "_id": 3009,
+        "name": "Ibuprofen 400mg",
+        "title": "Ibuprofen 400mg Tablets",
+        "price": 159.99,
+        "ptr": 130,
+        "mrp": 180,
+        "discount": 12,
+        "inStock": 180,
+        "sold": 620,
+        "quantity": {
+          "value": 15,
+          "unit": "tablets",
+          "package": "strip"
+        },
+        "dosageForm": "Tablet",
+        "manufacturer": "Cipla Ltd",
+        "category": "cat2",
+        "isTopSelling": true,
+        "gst": 5,
+        "composition": "Ibuprofen 400mg per tablet",
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=400&auto=format&fit=crop",
+            "_id": "3009-1"
+          }
+        ],
+        "product_info": "<div><h2>Ibuprofen 400mg</h2><p>NSAID for pain relief, inflammation reduction and fever reduction.</p></div>"
+      },
+      {
+        "_id": 3010,
+        "name": "Aspirin 75mg",
+        "title": "Aspirin 75mg Tablets",
+        "price": 119.99,
+        "ptr": 95,
+        "mrp": 140,
+        "discount": 15,
+        "inStock": 230,
+        "sold": 580,
+        "quantity": {
+          "value": 14,
+          "unit": "tablets",
+          "package": "strip"
+        },
+        "dosageForm": "Tablet",
+        "manufacturer": "GSK Pharma",
+        "category": "cat2",
+        "isTopSelling": true,
+        "gst": 5,
+        "composition": "Aspirin 75mg per tablet",
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1585435557481-3e9de8d5cdd9?q=80&w=400&auto=format&fit=crop",
+            "_id": "3010-1"
+          }
+        ],
+        "product_info": "<div><h2>Aspirin 75mg</h2><p>Low-dose aspirin for prevention of heart attacks and strokes.</p></div>"
+      }
+    ],
+    "top_selling_surgical": [
+      {
+        "_id": 4001,
+        "name": "Digital Thermometer",
+        "title": "Digital Oral Thermometer",
+        "price": 399.99,
+        "ptr": 350,
+        "mrp": 450,
+        "discount": 12,
+        "inStock": 100,
+        "sold": 780,
+        "category": "cat1",
+        "isTopSelling": true,
+        "gst": 12,
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1588774590081-64d66337cea2?q=80&w=400&auto=format&fit=crop",
+            "_id": "4001-1"
+          }
+        ],
+        "product_info": "<div><h2>Digital Thermometer</h2><p>Quick and accurate temperature readings with fever alarm. Water-resistant and easy to clean.</p></div>",
+        "package_type": "Box",
+        "manufacturer": "DigiHealth"
+      },
+      {
+        "_id": 4002,
+        "name": "Blood Pressure Monitor",
+        "title": "Automatic Digital BP Monitor",
+        "price": 2499.99,
+        "ptr": 2200,
+        "mrp": 2700,
+        "discount": 8,
+        "inStock": 50,
+        "sold": 650,
+        "category": "cat1",
+        "isTopSelling": true,
+        "gst": 12,
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1581595219315-a187dd60a7ef?q=80&w=400&auto=format&fit=crop",
+            "_id": "4002-1"
+          }
+        ],
+        "product_info": "<div><h2>Blood Pressure Monitor</h2><p>Fully automatic upper arm BP monitor with irregular heartbeat detection and memory storage.</p></div>",
+        "package_type": "Box",
+        "manufacturer": "OmronTech"
+      },
+      {
+        "_id": 4003,
+        "name": "Pulse Oximeter",
+        "title": "Fingertip Pulse Oximeter",
+        "price": 1299.99,
+        "ptr": 1100,
+        "mrp": 1500,
+        "discount": 15,
+        "inStock": 70,
+        "sold": 620,
+        "category": "cat1",
+        "isTopSelling": true,
+        "gst": 12,
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=400&auto=format&fit=crop",
+            "_id": "4003-1"
+          }
+        ],
+        "product_info": "<div><h2>Pulse Oximeter</h2><p>Measures blood oxygen saturation levels and pulse rate. Compact and portable design.</p></div>",
+        "package_type": "Box",
+        "manufacturer": "MedTech Devices"
+      },
+      {
+        "_id": 4004,
+        "name": "First Aid Kit",
+        "title": "Comprehensive First Aid Box",
+        "price": 899.99,
+        "ptr": 800,
+        "mrp": 999,
+        "discount": 10,
+        "inStock": 80,
+        "sold": 580,
+        "category": "cat1",
+        "isTopSelling": true,
+        "gst": 12,
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1603398938378-e54eab446dde?q=80&w=400&auto=format&fit=crop",
+            "_id": "4004-1"
+          }
+        ],
+        "product_info": "<div><h2>First Aid Kit</h2><p>Complete emergency kit with 100+ items including bandages, antiseptics, and emergency tools.</p></div>",
+        "package_type": "Box",
+        "manufacturer": "SafetyFirst"
+      },
+      {
+        "_id": 4005,
+        "name": "Disposable Gloves",
+        "title": "Nitrile Examination Gloves",
+        "price": 399.99,
+        "ptr": 350,
+        "mrp": 450,
+        "discount": 12,
+        "inStock": 150,
+        "sold": 550,
+        "quantity": {
+          "value": 100,
+          "unit": "gloves",
+          "package": "box"
+        },
+        "category": "cat1",
+        "isTopSelling": true,
+        "gst": 12,
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1584744982491-665216d95f8b?q=80&w=400&auto=format&fit=crop",
+            "_id": "4005-1"
+          }
+        ],
+        "product_info": "<div><h2>Disposable Gloves</h2><p>Powder-free nitrile examination gloves. Latex-free and suitable for sensitive skin.</p></div>",
+        "package_type": "Box",
+        "manufacturer": "MediPro"
+      },
+      {
+        "_id": 4006,
+        "name": "Digital Weighing Scale",
+        "title": "Digital Body Weight Scale",
+        "price": 1499.99,
+        "ptr": 1300,
+        "mrp": 1700,
+        "discount": 12,
+        "inStock": 60,
+        "sold": 480,
+        "category": "cat1",
+        "isTopSelling": true,
+        "gst": 12,
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1535914254981-b5012eebbd15?q=80&w=400&auto=format&fit=crop",
+            "_id": "4006-1"
+          }
+        ],
+        "product_info": "<div><h2>Digital Weighing Scale</h2><p>Accurate digital scale with tempered glass platform and LCD display. Auto-calibration feature.</p></div>",
+        "package_type": "Box",
+        "manufacturer": "HealthMate"
+      },
+      {
+        "_id": 4007,
+        "name": "Stethoscope",
+        "title": "Dual Head Stethoscope",
+        "price": 999.99,
+        "ptr": 900,
+        "mrp": 1100,
+        "discount": 10,
+        "inStock": 45,
+        "sold": 420,
+        "category": "cat1",
+        "isTopSelling": true,
+        "gst": 12,
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=400&auto=format&fit=crop",
+            "_id": "4007-1"
+          }
+        ],
+        "product_info": "<div><h2>Stethoscope</h2><p>Professional-grade acoustic stethoscope with dual head chestpiece for versatile auscultation.</p></div>",
+        "package_type": "Box",
+        "manufacturer": "CardioTech"
+      },
+      {
+        "_id": 4008,
+        "name": "Nebulizer Machine",
+        "title": "Compressor Nebulizer System",
+        "price": 1899.99,
+        "ptr": 1700,
+        "mrp": 2100,
+        "discount": 10,
+        "inStock": 35,
+        "sold": 380,
+        "category": "cat1",
+        "isTopSelling": true,
+        "gst": 12,
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1631549916768-4119b2e5f926?q=80&w=400&auto=format&fit=crop",
+            "_id": "4008-1"
+          }
+        ],
+        "product_info": "<div><h2>Nebulizer Machine</h2><p>Efficient medication delivery system for respiratory conditions. Includes adult and pediatric masks.</p></div>",
+        "package_type": "Box",
+        "manufacturer": "BreathEasy"
+      },
+      {
+        "_id": 4009,
+        "name": "Digital Glucose Monitor",
+        "title": "Blood Glucose Monitoring System",
+        "price": 1299.99,
+        "ptr": 1100,
+        "mrp": 1400,
+        "discount": 8,
+        "inStock": 40,
+        "sold": 350,
+        "category": "cat1",
+        "isTopSelling": true,
+        "gst": 12,
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=400&auto=format&fit=crop",
+            "_id": "4009-1"
+          }
+        ],
+        "product_info": "<div><h2>Digital Glucose Monitor</h2><p>Accurate blood glucose testing with fast results. Includes meter, lancing device and test strips.</p></div>",
+        "package_type": "Kit",
+        "manufacturer": "DiabeCare"
+      },
+      {
+        "_id": 4010,
+        "name": "Face Masks",
+        "title": "N95 Respirator Masks",
+        "price": 599.99,
+        "ptr": 530,
+        "mrp": 650,
+        "discount": 8,
+        "inStock": 120,
+        "sold": 320,
+        "quantity": {
+          "value": 10,
+          "unit": "masks",
+          "package": "box"
+        },
+        "category": "cat1",
+        "isTopSelling": true,
+        "gst": 12,
+        "images": [
+          {
+            "url": "https://images.unsplash.com/photo-1605845632388-e4c165a7b50a?q=80&w=400&auto=format&fit=crop",
+            "_id": "4010-1"
+          }
+        ],
+        "product_info": "<div><h2>N95 Respirator Masks</h2><p>High-filtration masks providing 95% protection against airborne particles. Adjustable nose clip.</p></div>",
+        "package_type": "Box",
+        "manufacturer": "SafeMed"
+      }
+    ]
+  }
 }

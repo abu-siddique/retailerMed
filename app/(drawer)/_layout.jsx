@@ -21,14 +21,14 @@ export default function DrawerLayout() {
     <>
       <Stack.Screen
         options={{
-          headerShown: false,
+          headerShown: true,
           animation: 'none',
         }}
       />
       <Drawer.Navigator
         initialRouteName="index"
         screenOptions={{
-          headerShown: false,
+          headerShown: true,
           drawerStyle: {
             width: '85%',
             backgroundColor: '#FFFFFF',

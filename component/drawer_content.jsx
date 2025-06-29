@@ -56,120 +56,135 @@ export default function CustomDrawerContent(props) {
   const iconSize = moderateScale(22);
 
   return (
-    <DrawerContentScrollView {...props} contentContainerStyle={styles.drawerContent}>
-      {/* Header section with logo and user info */}
-      <View style={styles.drawerHeader}>
-        <Image 
-          source={Logo} 
-          style={{
-            width: moderateScale(150), 
-            height: moderateVerticalScale(50), 
-            resizeMode: 'contain'
-          }} 
-        />
-        
-        {userData ? (
-          <View style={styles.userInfo}>
-            <View style={styles.userAvatar}>
-              <Text style={styles.avatarText}>
-                {userData.name ? userData.name.charAt(0).toUpperCase() : 'G'}
-              </Text>
+    <View style={styles.container}>
+      <DrawerContentScrollView 
+        {...props} 
+        contentContainerStyle={styles.drawerContent}
+        style={styles.scrollView}
+      >
+        {/* Header section with logo and user info */}
+        <View style={styles.drawerHeader}>
+          <Image 
+            source={Logo} 
+            style={{
+              width: moderateScale(150), 
+              height: moderateVerticalScale(50), 
+              resizeMode: 'contain'
+            }} 
+          />
+          
+          {userData ? (
+            <View style={styles.userInfo}>
+              <View style={styles.userAvatar}>
+                <Text style={styles.avatarText}>
+                  {userData.name ? userData.name.charAt(0).toUpperCase() : 'G'}
+                </Text>
+              </View>
+              <Text style={styles.userName}>{userData?.name || 'Guest User'}</Text>
+              <Text style={styles.userRole}>{userData?.role || 'Pharmacy'}</Text>
             </View>
-            <Text style={styles.userName}>{userData?.name || 'Guest User'}</Text>
-            <Text style={styles.userRole}>{userData?.role || 'Pharmacy'}</Text>
-          </View>
-        ) : (
-          <TouchableOpacity 
-            style={styles.loginButton}
-            onPress={() => router.push('/(auth)/login')}
-          >
-            <Text style={styles.loginButtonText}>Login / Register</Text>
-          </TouchableOpacity>
+          ) : (
+            <TouchableOpacity 
+              style={styles.loginButton}
+              onPress={() => router.push('/(auth)/login')}
+            >
+              <Text style={styles.loginButtonText}>Login / Register</Text>
+            </TouchableOpacity>
+          )}
+        </View>
+
+        {/* Divider */}
+        <View style={styles.divider} />
+
+        {/* Custom Drawer Items */}
+        <View style={styles.drawerItemsContainer}>
+          <CustomDrawerItem
+            label="Home"
+            icon={<Icons.Ionicons name="home-outline" size={iconSize} color="#1A237E" />}
+            onPress={() => router.replace('/(main)/(tabs)')}
+          />
+          
+          <CustomDrawerItem
+            label="My Orders"
+            icon={<Icons.MaterialIcons name="shopping-bag" size={iconSize} color="#1A237E" />}
+            onPress={() => router.push('/(main)/(tabs)/order_history')}
+          />
+          
+          <CustomDrawerItem
+            label="Inventory"
+            icon={<Icons.MaterialIcons name="inventory" size={iconSize} color="#1A237E" />}
+            onPress={() => router.push('/inventory')}
+          />
+          
+          <CustomDrawerItem
+            label="Prescription Upload"
+            icon={<Icons.FontAwesome5 name="prescription" size={iconSize} color="#1A237E" />}
+            onPress={() => router.push('/prescription-upload')}
+          />
+          
+          <CustomDrawerItem
+            label="Wholesaler Catalog"
+            icon={<Icons.Ionicons name="book-outline" size={iconSize} color="#1A237E" />}
+            onPress={() => router.push('/catalog')}
+          />
+          
+          <CustomDrawerItem
+            label="Returns & Claims"
+            icon={<Icons.MaterialIcons name="assignment-return" size={iconSize} color="#1A237E" />}
+            onPress={() => router.push('/returns')}
+          />
+          
+          <CustomDrawerItem
+            label="Invoices & Bills"
+            icon={<Icons.FontAwesome name="file-text-o" size={iconSize} color="#1A237E" />}
+            onPress={() => router.push('/invoices')}
+          />
+          
+          <CustomDrawerItem
+            label="Support & Help"
+            icon={<Icons.Ionicons name="help-circle-outline" size={iconSize} color="#1A237E" />}
+            onPress={() => router.push('/support')}
+          />
+          
+          <CustomDrawerItem
+            label="Settings"
+            icon={<Icons.Ionicons name="settings-outline" size={iconSize} color="#1A237E" />}
+            onPress={() => router.push('/settings')}
+          />
+        </View>
+      </DrawerContentScrollView>
+      
+      {/* Footer with logout button and version info - outside the scroll view */}
+      <View style={styles.footer}>
+        {/* Divider before logout */}
+        <View style={styles.divider} />
+        
+        {/* Logout Button */}
+        {userData && (
+          <CustomDrawerItem
+            label="Logout"
+            icon={<Icons.Ionicons name="log-out-outline" size={iconSize} color="#F44336" />}
+            color="#F44336"
+            onPress={handleLogout}
+          />
         )}
+        
+        {/* Version info */}
+        <Text style={styles.versionText}>Version 1.0.0</Text>
       </View>
-
-      {/* Divider */}
-      <View style={styles.divider} />
-
-      {/* Custom Drawer Items */}
-      <View style={styles.drawerItemsContainer}>
-        <CustomDrawerItem
-          label="Home"
-          icon={<Icons.Ionicons name="home-outline" size={iconSize} color="#1A237E" />}
-          onPress={() => router.replace('/(main)/(tabs)')}
-        />
-        
-        <CustomDrawerItem
-          label="My Orders"
-          icon={<Icons.MaterialIcons name="shopping-bag" size={iconSize} color="#1A237E" />}
-          onPress={() => router.push('/(main)/(tabs)/order_history')}
-        />
-        
-        <CustomDrawerItem
-          label="Inventory"
-          icon={<Icons.MaterialIcons name="inventory" size={iconSize} color="#1A237E" />}
-          onPress={() => router.push('/inventory')}
-        />
-        
-        <CustomDrawerItem
-          label="Prescription Upload"
-          icon={<Icons.FontAwesome5 name="prescription" size={iconSize} color="#1A237E" />}
-          onPress={() => router.push('/prescription-upload')}
-        />
-        
-        <CustomDrawerItem
-          label="Wholesaler Catalog"
-          icon={<Icons.Ionicons name="book-outline" size={iconSize} color="#1A237E" />}
-          onPress={() => router.push('/catalog')}
-        />
-        
-        <CustomDrawerItem
-          label="Returns & Claims"
-          icon={<Icons.MaterialIcons name="assignment-return" size={iconSize} color="#1A237E" />}
-          onPress={() => router.push('/returns')}
-        />
-        
-        <CustomDrawerItem
-          label="Invoices & Bills"
-          icon={<Icons.FontAwesome name="file-text-o" size={iconSize} color="#1A237E" />}
-          onPress={() => router.push('/invoices')}
-        />
-        
-        <CustomDrawerItem
-          label="Support & Help"
-          icon={<Icons.Ionicons name="help-circle-outline" size={iconSize} color="#1A237E" />}
-          onPress={() => router.push('/support')}
-        />
-        
-        <CustomDrawerItem
-          label="Settings"
-          icon={<Icons.Ionicons name="settings-outline" size={iconSize} color="#1A237E" />}
-          onPress={() => router.push('/settings')}
-        />
-      </View>
-      
-      {/* Divider before logout */}
-      <View style={styles.divider} />
-      
-      {/* Logout Button */}
-      {userData && (
-        <CustomDrawerItem
-          label="Logout"
-          icon={<Icons.Ionicons name="log-out-outline" size={iconSize} color="#F44336" />}
-          color="#F44336"
-          onPress={handleLogout}
-        />
-      )}
-      
-      {/* Version info */}
-      <Text style={styles.versionText}>Version 1.0.0</Text>
-    </DrawerContentScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  drawerContent: {
+  container: {
     flex: 1,
+  },
+  scrollView: {
+    flex: 1,
+  },
+  drawerContent: {
+    flexGrow: 1,
     paddingTop: 0,
   },
   drawerHeader: {
@@ -227,6 +242,7 @@ const styles = StyleSheet.create({
   drawerItemsContainer: {
     paddingTop: moderateVerticalScale(4),
     paddingHorizontal: moderateScale(12),
+    paddingBottom: moderateVerticalScale(8),
   },
   customDrawerItem: {
     flexDirection: 'row',
@@ -246,11 +262,14 @@ const styles = StyleSheet.create({
     color: '#1A237E',
     flex: 1,
   },
+  footer: {
+    paddingHorizontal: moderateScale(12),
+    paddingBottom: moderateVerticalScale(20),
+  },
   versionText: {
     fontSize: moderateScale(12),
     color: '#94A3B8',
     textAlign: 'center',
     marginTop: moderateVerticalScale(16),
-    marginBottom: moderateVerticalScale(20),
   },
 });

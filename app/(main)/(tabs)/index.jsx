@@ -11,7 +11,9 @@ import {
 
 
 
-import { useGetCategoriesQuery } from '@/component/services';
+import { useGetFeedInfoQuery } from '@/component/services';
+import HorizontalProductCarousel from '../../../component/common/horizontal_product_carousel';
+import FeedHeader from '../../../component/feed_header';
 
 
 export default function FeedScreen() {
@@ -48,7 +50,7 @@ export default function FeedScreen() {
     error,
     isError,
     refetch,
-  } = useGetCategoriesQuery(
+  } = useGetFeedInfoQuery(
     // No parameters needed as per your service implementation
     {},
     {
@@ -58,15 +60,21 @@ export default function FeedScreen() {
       }),
     }
   );
+  const {categories, new_arrivals_medicine, new_arrivals_surgical, top_selling_medicine, top_selling_surgical} = data || {};
+  console.log('categories', categories);
+  console.log('new_arrivals_medicine', new_arrivals_medicine);
+  console.log('new_arrivals_surgical', new_arrivals_surgical);
+  console.log('top_selling_medicine', top_selling_medicine);
+  console.log('top_selling_surgical', top_selling_surgical);
 
-  // Extract categories from the response
-  const { categories } = data;
+
+  
 
   //? Render(s)
   return (
     <>
       <Stack.Screen
-        
+        options={{header: () => <FeedHeader />}}
       />
       <ShowWrapper
         isLoading={isLoading}
@@ -81,17 +89,43 @@ export default function FeedScreen() {
           <>
             <DeliveryNotificationBanner/>
             <MainSlider />
+    
 
             <Categories categories={categories} />
+            <HorizontalProductCarousel 
+              title="New Arrivals On Medicine"
+              products={new_arrivals_medicine}
+              viewAllLink="/products?sort=createdAt"
+              maxItems={10}
+            />
+            <HorizontalProductCarousel title={"New Arrivals On Surgical"}
+              products={new_arrivals_surgical}
+              viewAllLink="/products?sort=createdAt"
+              maxItems={10}
+            />
+            <HorizontalProductCarousel
+              title={"Top Selling On Medicine"}
+              products={top_selling_medicine}
+              viewAllLink="/products?sort=createdAt"
+              maxItems={10}
+            />
+            <HorizontalProductCarousel
+              title={"Top Selling On Surgical"}
+              products={top_selling_surgical}
+              viewAllLink="/products?sort=createdAt"
+              maxItems={10}
+            />
+
             {/* <DiscountSlider currentCategory={currentCategory} />
             <BannerOne data={bannerOneType} />
             <BestSellsSlider categorySlug={currentCategory?.slug} />
             <BannerTwo data={bannerTwoType} />
             <MostFavouraiteProducts categorySlug={currentCategory?.slug} />  */}
-            <Link href={'/test'}>Go to Test</Link>
+            <Link href={'/test'}>Go to Testt</Link>
           </>
         </ScrollView>
       </ShowWrapper>
+      <Link href={'/test'}>Go to Testt</Link>
     </>
   );
 }

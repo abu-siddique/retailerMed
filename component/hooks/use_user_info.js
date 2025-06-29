@@ -40,7 +40,7 @@ export default function useUserInfo() {
   );
 
   return {
-    userInfo: data?.data,
+    userInfo: data,
     isVerify,
     isLoginVerify,
     mustAuthAction,

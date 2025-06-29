@@ -5,17 +5,17 @@ import formatNumber from '../../utils/format_number';
 const ProductPrice = ({ 
   singleProduct = false, 
   inStock = 0, 
-  price = 0  // MRP price
+  mrp = 0,   // MRP price
+  ptr = 0    // PTR price
 }) => {
-  // Calculate PTR (6% discount on MRP)
-  const ptr = price * 0.94; // 6% trade discount
-
   // Dynamic styles based on singleProduct
   const containerStyle = [
     styles.container,
     singleProduct && {
       flexDirection: 'column-reverse',
-      alignItems: 'flex-start'
+      alignItems: 'flex-start',
+      gap: moderateScale(2)
+      
     }
   ];
 
@@ -26,7 +26,8 @@ const ProductPrice = ({
 
   if (inStock === 0) {
     return (
-      <Text style={styles.outOfStock}>Out of stock</Text>
+      // <Text style={styles.outOfStock}>Out of stock</Text>
+      undefined
     );
   }
 
@@ -44,7 +45,7 @@ const ProductPrice = ({
       <View style={mrpContainerStyle}>
         <Text style={styles.priceLabel}>MRP: </Text>
         <Text style={styles.mrpPrice}>
-          {formatNumber(price, true)}
+          {formatNumber(mrp, true)}
         </Text>
       </View>
     </View>

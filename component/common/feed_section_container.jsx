@@ -47,7 +47,7 @@ const FeedSectionContainer = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: verticalScale(24),
+    marginTop: verticalScale(8),
     width: '100%',
     backgroundColor: 'white',
     borderRadius: moderateScale(12),
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     marginRight: scale(8),
   },
   title: {
-    fontSize: moderateScale(18),
+    fontSize: moderateScale(14),
     fontWeight: '600',
     color: '#1A3E72', // Dark pharmacy blue
     marginRight: 'auto',
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
   },
   moreText: {
     color: '#2D7BC6', // Pharmacy blue
-    fontSize: moderateScale(14),
+    fontSize: moderateScale(12),
     fontWeight: '500',
   },
 });

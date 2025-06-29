@@ -283,6 +283,20 @@ server.post('/api/category', (req, res) => {
   res.status(201).json({ data: newCategory });
 });
 
+// Custom API endpoint for feed data
+server.get('/api/feed', (req, res) => {
+  const db = router.db; // Get the lowdb instance
+  const data = {
+    categories: db.get('categories').value(),
+    new_arrivals_medicine: db.get('products.new_arrivals_medicine').value(),
+    new_arrivals_surgical: db.get('products.new_arrivals_surgical').value(),
+    top_selling_medicine: db.get('products.top_selling_medicine').value(),
+    top_selling_surgical: db.get('products.top_selling_surgical').value(),
+  };
+  
+  res.json({ data: data });
+});
+
 
 // Fallback to default router
 // server.use(router);

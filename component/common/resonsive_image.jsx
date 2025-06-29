@@ -17,6 +17,9 @@ export default function ResponsiveImage(props) {
         style={[styles.image, imageStyle]}
         placeholder={blurDataURL}
         transition={200}
+        onError={() => {
+          console.warn('Image failed to load:', alt);
+        }}
         {...rest}
       />
     </View>

@@ -1,17 +1,18 @@
 import { Link } from 'expo-router';
-import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { moderateScale, moderateVerticalScale } from 'react-native-size-matters';
 
 // Components
 import ResponsiveImage from '../common/resonsive_image';
 import DiscountProduct from './discount_product';
+import OfferBadge from './offer_badge';
 import ProductPrice from './product_price';
 import StockIndicator from './stock_indicator';
 
 // Utils
 import truncate from '../../utils/truncate';
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, vertical = false }) => {
   // Format purchase count for medicines
   const formatPurchases = (count) => {
     if (!count) return 'New arrival';
@@ -24,79 +25,85 @@ const ProductCard = ({ product }) => {
       product.quantity.package ? `/${product.quantity.package}` : ''
     }`;
   };
-  // Image gallery indicator dots
-  const renderImageDot = ({ index }) => (
-    <View 
-      style={[
-        styles.imageDot,
-        index === 0 && styles.activeDot
-      ]}
-    />
-  );
+
+  const containerStyle = StyleSheet.flatten([
+    styles.container,
+    vertical && { padding: moderateScale(4),
+      backgroundColor: '#FFFFFF',
+      borderRadius: moderateScale(4),
+      paddingHorizontal: moderateScale(0)
+
+    }
+  ]);
+
+  const contentContainerStyle = StyleSheet.flatten([
+    styles.contentContainer,
+    vertical && styles.verticalLayout
+  ]);
+
+  const imageContainerStyle = StyleSheet.flatten([
+    styles.imageContainer,
+    vertical && { alignSelf: 'center' }
+  ]);
+
+  const imageStyle = vertical ? styles.verticalImage : styles.image;
 
   return (
     <Link href={`/products/${product._id}`} asChild>
-      <Pressable style={styles.container}>
-        <View style={styles.contentContainer}>
-          {/* Medicine Image with Gallery Indicator */}
-          <View style={styles.imageContainer}>
+      <Pressable style={containerStyle}>
+        <View style={contentContainerStyle}>
+          {/* Medicine Image */}
+          <View style={imageContainerStyle}>
             <ResponsiveImage
-              style={styles.image}
+              style={imageStyle}
               source={{ uri: product.images[0]?.url }}
               alt={product.name}
             />
-            
-            {product.images?.length > 1 && (
-              <View style={styles.imageIndicator}>
-                <FlatList
-                  data={product.images}
-                  horizontal
-                  renderItem={renderImageDot}
-                  keyExtractor={(_, index) => index.toString()}
-                  contentContainerStyle={styles.dotsContainer}
-                  showsHorizontalScrollIndicator={false}
-                />
-              </View>
+            {/* Only show badge if there's an offer */}
+            {(product.buy && product.get) && (
+              <OfferBadge 
+                buy={product.buy} 
+                get={product.get}
+                containerStyle={styles.fullWidthBadge}
+              />
             )}
           </View>
 
-          {/* Medicine Info */}
+          {/* Medicine Info - below if vertical */}
           <View style={styles.infoContainer}>
             <Text style={styles.title} numberOfLines={2}>
-              {truncate(product.name, 70)}
+              {truncate(product.name, 30)}
             </Text>
 
-            {/* Package Quantity */}
-            {product.quantity && (
+            {!vertical && product.quantity && (
               <Text style={styles.quantity}>
                 {formatQuantity()}
               </Text>
             )}
 
-            {/* Medicine-specific metadata */}
+          {!vertical && (
             <View style={styles.metaContainer}>
               <StockIndicator inStock={product.inStock} />
               {product.dosageForm && (
                 <Text style={styles.dosageForm}>{product.dosageForm}</Text>
               )}
             </View>
+          )}  
 
             <View style={styles.metaContainer}>
-              <Text style={styles.purchasesText}>
-                {formatPurchases(product.purchases)}
-              </Text>
               {product.manufacturer && (
                 <Text style={styles.manufacturer}>{product.manufacturer}</Text>
               )}
             </View>
 
             <View style={styles.priceContainer}>
-              <DiscountProduct discount={product.discount} />
               <ProductPrice
-                price={product.price}
-                discount={product.discount}
+                mrp={product.mrp}
+                ptr={product.ptr}
+                singleProduct={vertical}
                 inStock={product.inStock}
               />
+              {!vertical && <DiscountProduct discount={product.discount} />}
             </View>
           </View>
         </View>
@@ -107,63 +114,90 @@ const ProductCard = ({ product }) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: moderateVerticalScale(12),
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: '#e5e7eb',
-    backgroundColor: '#f8fafc' // Light blueish background for medical products
+    paddingVertical: moderateVerticalScale(8),
+    backgroundColor: '#f8fafc',
+
   },
   contentContainer: {
     flexDirection: 'row',
-    gap: moderateScale(16),
     paddingHorizontal: moderateScale(12),
+    gap: moderateScale(8),
   },
-  imageContainer: {
-    width: moderateScale(100),
-    alignItems: 'center',
+  priceContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+    
   },
-  image: {
-    width: moderateScale(100),
-    height: moderateVerticalScale(100),
-    borderRadius: moderateScale(4), // Less rounded for medical products
-    marginBottom: moderateVerticalScale(4),
-    borderWidth: 1,
-    borderColor: '#e2e8f0' // Light border for medicine images
+  verticalLayout: {
+    flexDirection: 'column',
+    gap: moderateScale(0),
   },
-  imageIndicator: {
-    marginBottom: moderateVerticalScale(4),
-  },
-  dotsContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  imageDot: {
-    width: moderateScale(6),
-    height: moderateScale(6),
-    borderRadius: moderateScale(3),
-    backgroundColor: '#d1d5db',
-    marginHorizontal: moderateScale(2),
-  },
-  activeDot: {
-    backgroundColor: '#3b82f6',
-  },
+  // Update the imageContainer style
+imageContainer: {
+  width: moderateScale(100),
+  height: moderateVerticalScale(70) + moderateVerticalScale(20), // Image height + space for badge
+  alignItems: 'center',
+  borderColor: '#CEC9C8',
+  borderRadius: moderateScale(2),
+  marginBottom: moderateVerticalScale(2),
+  overflow: 'hidden',
+  borderWidth: StyleSheet.hairlineWidth,
+  position: 'relative', // Add this for absolute positioning of the badge
+},
+
+// Update the image style to maintain aspect ratio
+image: {
+  width: moderateScale(100),
+  height: moderateVerticalScale(100),
+  borderColor: '#e2e8f0',
+  resizeMode: 'contain',
+},
+
+// Update the verticalImage style similarly
+verticalImage: {
+  width: moderateScale(100),
+  height: moderateVerticalScale(70),
+  borderBottomLeftRadius: 0,
+  borderBottomRightRadius: 0,
+  borderTopLeftRadius: 0,
+  borderTopRightRadius: 0,
+  borderColor: '#e2e8f0',
+  resizeMode: 'contain',
+},
+
+// Update the fullWidthBadge style to position it absolutely at the bottom
+fullWidthBadge: {
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  right: 0,
+  borderBottomLeftRadius: 2,
+  borderBottomRightRadius: 2,
+  borderTopLeftRadius: 0,
+  borderTopRightRadius: 0,
+},
+  
+  
   infoContainer: {
     flex: 1,
-    gap: moderateVerticalScale(6), // Tighter spacing for medical info
+    marginTop: moderateVerticalScale(1),
   },
   title: {
-    fontSize: moderateScale(14),
-    color: '#1e3a8a', // Dark blue for medicine names
+    fontSize: moderateScale(11),
+    color: '#1e3a8a',
     fontWeight: '500',
-    lineHeight: moderateVerticalScale(20),
+    marginBottom: moderateVerticalScale(2),
+    lineHeight: moderateVerticalScale(14),
   },
   metaContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: moderateVerticalScale(4),
+    marginBottom: moderateVerticalScale(0),
   },
   dosageForm: {
-    fontSize: moderateScale(11),
+    fontSize: moderateScale(10),
     color: '#64748b',
     backgroundColor: '#e0e7ff',
     paddingHorizontal: moderateScale(6),
@@ -176,17 +210,11 @@ const styles = StyleSheet.create({
     fontStyle: 'italic'
   },
   purchasesText: {
-    fontSize: moderateScale(11),
+    fontSize: moderateScale(10),
     color: '#334155',
   },
-  priceContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-end',
-    marginTop: moderateVerticalScale(4),
-  },
   quantity: {
-    fontSize: moderateScale(12),
+    fontSize: moderateScale(10),
     color: '#475569',
     marginBottom: moderateVerticalScale(4),
     fontWeight: '500'

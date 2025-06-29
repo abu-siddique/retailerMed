@@ -13,7 +13,7 @@ export default function SigninPromoRenderer({ tips = 'Sign in to unlock more fea
     <View style={styles.container}>
       <Image 
         source={require('../../assets/images/sign-in-promo.png')} 
-        style={[styles.image, { width, height: width * 0.58 }]} 
+        style={[styles.image, { width, height: width * 0.18 }]} 
         resizeMode="contain"
       />
       
@@ -41,11 +41,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: moderateScale(16),
   },
   image: {
-    marginBottom: moderateVerticalScale(24),
+    marginBottom: moderateVerticalScale(16),
   },
   textContainer: {
     alignItems: 'center',
-    marginBottom: moderateVerticalScale(24),
+    marginBottom: moderateVerticalScale(16),
   },
   title: {
     fontSize: moderateScale(18),

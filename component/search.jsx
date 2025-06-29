@@ -26,7 +26,7 @@ export default function Search({ placeholder }) {
         />
       </View>
       <Text style={styles.text}>
-        {placeholder || "Search medicines, health products..."}
+        {placeholder || "Search medicines, surgicals products..."}
       </Text>
     </TouchableOpacity>
   )
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F3F4FF',
     alignItems: 'center',
     padding: moderateScale(10),
-    paddingVertical: moderateVerticalScale(12),
+    paddingVertical: moderateVerticalScale(8),
     borderWidth: 1,
     borderColor: '#E2E8F0',
     shadowColor: '#000',
@@ -52,6 +52,8 @@ const styles = StyleSheet.create({
     marginRight: moderateScale(6),
     justifyContent: 'center',
     alignItems: 'center',
+    paddingVertical: moderateVerticalScale(2),
+    marginVertical: moderateVerticalScale(2),
   },
   text: {
     flex: 1,

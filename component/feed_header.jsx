@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Animated, Dimensions, Image, Modal, Pressable, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { moderateScale, moderateVerticalScale, scale } from 'react-native-size-matters'
+import { moderateScale, moderateVerticalScale, scale, verticalScale } from 'react-native-size-matters'
 import { useSelector } from 'react-redux'
 
 import { formatNumber } from '@/utils'
@@ -149,7 +149,7 @@ export default function FeedHeader({ title }) {
         {/* Search Bar */}
         <View style={styles.searchContainer}>
           <Search 
-            placeholder="Search medicines or health products..." 
+            placeholder="Search medicines or surgical products..." 
           />
         </View>
       </View>
@@ -214,7 +214,7 @@ const styles = StyleSheet.create({
         shadowRadius: moderateScale(6),
       },
       android: {
-        elevation: 8,
+        elevation: 0.5,
       },
     }),
   },
@@ -222,8 +222,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingVertical: moderateVerticalScale(12),
-    marginTop: moderateVerticalScale(4),
+    paddingVertical: moderateVerticalScale(8),
+    marginTop: moderateVerticalScale(0),
   },
   logoWrapper: {
     flexDirection: 'row',
@@ -249,33 +249,37 @@ const styles = StyleSheet.create({
     borderRadius: moderateScale(8),
   },
   cartButton: {
-    position: 'relative',
-    padding: moderateScale(8),
-    borderRadius: moderateScale(8),
-    backgroundColor: '#FFFFFF',
-    // Removed borderWidth and borderColor
+    padding: moderateScale(4),
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: moderateScale(40),
+    height: verticalScale(40),
   },
   searchContainer: {
-    marginBottom: moderateVerticalScale(8),
+    marginBottom: moderateVerticalScale(4),
+    paddingVertical: moderateVerticalScale(0),
   },
   badge: {
     position: 'absolute',
-    top: moderateVerticalScale(-6),
-    right: moderateVerticalScale(-6),
-    backgroundColor: '#FF5252',
-    borderRadius: moderateScale(20),
+    top: verticalScale(-1),
+    right: moderateScale(-1),
+    backgroundColor: '#FF3B30',
+    borderRadius: moderateScale(10), // Half of height to make it round
     minWidth: moderateScale(20),
     height: moderateScale(20),
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: moderateScale(1.5),
-    borderColor: '#FFFFFF',
+    borderColor: '#fff',
   },
   badgeText: {
-    color: '#FFFFFF',
+    color: '#fff',
     fontSize: moderateScale(12),
-    fontWeight: '700',
-    paddingHorizontal: moderateScale(4),
+    fontWeight: 'bold',
+    includeFontPadding: false,
+    textAlignVertical: 'center',
+    paddingHorizontal: moderateScale(2), 
+    paddingVertical: moderateScale(2), // Added vertical padding for better touch area
   },
   drawerContainer: {
     flex: 1,

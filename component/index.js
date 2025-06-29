@@ -7,8 +7,12 @@ export { default as Search } from './search';
 // Cart components
 export { default as AddToCartOperation } from './cart/add_to_cart_operation';
 export { default as CartButtons } from './cart/cart_buttons';
+export { default as CartInfo } from './cart/cart_info';
+export { default as CartItem } from './cart/cart_item';
+export { default as DiscountCartItem } from './cart/discount_cart_item';
 
 // Common components
+export { default as AuthWrapper } from './common/auth_wrapper';
 export { default as Button } from './common/button';
 export { default as DeliveryNotificationBanner } from './common/delivery_notification_banner';
 export { default as DisplayError } from './common/display_error';
@@ -47,6 +51,10 @@ export { default as StockIndicator } from './product/stock_indicator';
 
 // Slider
 export { default as Slider } from './sliders/slider';
+
+
+//* RENDERER
+export { default as SigninPromoRenderer } from './render/sign-in-promo-render';
 
 // Export any additional components from other subdirectories as needed
 // If there are components in render, services, skeleton, sliders, or store folders

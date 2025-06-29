@@ -1,9 +1,7 @@
-import { Ionicons } from '@expo/vector-icons';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
-import * as Clipboard from 'expo-clipboard';
 import { Stack, useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
-import { Image, Keyboard, Platform, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Image, Keyboard, KeyboardAvoidingView, Platform, StatusBar, StyleSheet, Text, TextInput, View } from 'react-native';
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 import Toast from 'react-native-toast-message';
 import { useDispatch } from 'react-redux';
@@ -37,117 +35,11 @@ export default function LoginScreen() {
     return () => clearInterval(interval);
   }, [timer]);
 
-  // Clipboard Check Effect
-  useEffect(() => {
-    const checkClipboard = async () => {
-      try {
-        const text = await Clipboard.getStringAsync();
-        const otpMatch = text.match(/\b\d{6}\b/);
-        if (otpMatch && stage === 'otp') {
-            setOtp(otpMatch[0] || '') 
-            handleVerifyOtp(otpMatch[0] || '')
-        }
-      } catch (err) {
-        console.log('Clipboard error:', err);
-      }
-    };
-
-    if (stage === 'otp') checkClipboard();
-  }, [stage]);
-
-  // SMS Retriever (Android)
-  useEffect(() => {
-    if (Platform.OS === 'android') {
-      // Create a more robust SMS retriever mock
-      const mockSmsRetriever = {
-        // Direct function properties
-        removeAllListeners: () => {},
-        requestPhoneNumber: () => Promise.resolve(''),
-        startOtpListener: () => Promise.resolve(''),
-        stopOtpListener: () => Promise.resolve(''),
-        request: () => Promise.resolve(''),
-        
-        // Nested properties with full structure
-        SMS: {
-          startRetriever: () => Promise.resolve({ message: null }),
-          stopRetriever: () => Promise.resolve('')
-        },
-        
-        // Handle any other potential property access
-        get: function() { return () => Promise.resolve('') }
-      };
-      
-      // Make this a global variable
-      global.SMS_MODULE = mockSmsRetriever;
-      
-      // Create a fully non-null mock of the module
-      const smsRetrieverProxy = new Proxy(mockSmsRetriever, {
-        get: function(target, prop) {
-          if (prop in target) {
-            return target[prop];
-          }
-          // Return a function for any missing property
-          return typeof prop === 'symbol' 
-            ? () => {} 
-            : () => Promise.resolve('');
-        }
-      });
-      
-      // Override require for the SMS retriever module
-      try {
-        const originalRequire = global.require || global.__r;
-        global.require = function(moduleName) {
-          if (moduleName === 'react-native-sms-retriever') {
-            return smsRetrieverProxy;
-          }
-          return originalRequire(moduleName);
-        };
-      } catch (error) {
-        console.log('Failed to override require:', error);
-      }
-      
-      try {
-        const listenForSMS = async () => {
-          try {
-            await global.SMS_MODULE.request();
-            const smsResponse = await global.SMS_MODULE.SMS.startRetriever();
-            if (smsResponse && smsResponse.message) {
-              const otpMatch = smsResponse.message.match(/\b\d{6}\b/);
-              if (otpMatch) {
-                setOtp(otpMatch[0] || '');
-                handleVerifyOtp(otpMatch[0] || '');
-              }
-            }
-          } catch (err) {
-            console.log('SMS retriever operation failed:', err);
-            // Continue with the app even if SMS retriever fails
-          }
-        };
-
-        listenForSMS();
-        
-        // Cleanup function
-        return () => {
-          try {
-            if (global.SMS_MODULE && global.SMS_MODULE.SMS && typeof global.SMS_MODULE.SMS.stopRetriever === 'function') {
-              global.SMS_MODULE.SMS.stopRetriever();
-            }
-          } catch (error) {
-            // Silently handle cleanup errors
-          }
-        };
-      } catch (error) {
-        console.log('SMS retriever setup failed:', error);
-      }
-    }
-  }, [stage]);
-
+ 
   const handleSendOtp = (phone) => {
     Keyboard.dismiss();
     setOtp(''); // Clear existing OTP input
     setclearInput(true)
-
-
 
     sendOtp(phone)
       .unwrap()
@@ -236,14 +128,14 @@ export default function LoginScreen() {
         options={{
           title: "",
           headerShown: true,
-          headerLeft: () => (
-            <TouchableOpacity 
-              onPress={handleGoBack} 
-              style={{ marginLeft: 16, padding: 8 }}
-            >
-              <Ionicons name="arrow-back" size={24} color="blue" />
-            </TouchableOpacity>
-          ),
+          // headerLeft: () => (
+          //   <TouchableOpacity 
+          //     onPress={handleGoBack} 
+          //     style={{ marginLeft: 16, padding: 8 }}
+          //   >
+          //     <Ionicons name="arrow-back" size={24} color="blue" />
+          //   </TouchableOpacity>
+          // ),
           headerStyle: {
             backgroundColor: '#FFFFFF',
           },
@@ -254,6 +146,10 @@ export default function LoginScreen() {
           headerShadowVisible: true,
         }}
       />
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={styles.keyboardAvoidingContainer}
+      >
       <View style={styles.container}>
         <Image source={Logo} style={styles.logo} />
 
@@ -282,14 +178,14 @@ export default function LoginScreen() {
           <View style={styles.otpStage}>
             <Text style={styles.title}>Verify OTP</Text>
             <Text style={styles.subtitle}>Sent to {sentPhone}</Text>
-
+            
             <OTPInputView
               style={styles.otpContainer}
               pinCount={6}
               code={otp || ''} // Ensure `otp` is always a string
               onCodeChanged={(otp) => {setOtp(otp || '') ; setclearInput(false)}}
               clearInputs={clearInput}
-              autoFocusOnLoad
+              autoFocusOnLoad={false}
               codeInputFieldStyle={styles.otpInput}
               codeInputHighlightStyle={styles.otpInputActive}
               onCodeFilled={(code) => handleVerifyOtp(code)}
@@ -310,17 +206,21 @@ export default function LoginScreen() {
             <Button
               loading={isLoading}
               onPress={() => handleVerifyOtp(otp || '')}
-              style={styles.button}
+              style={styles.verifyButton}
             > Verify </Button>
           </View>
         )}
         <Toast />
       </View>
+      </KeyboardAvoidingView>
     </>
   );
 }
 
 const styles = StyleSheet.create({
+  keyboardAvoidingContainer: {
+    flex: 1,
+  },
   container: {
     flex: 1,
     backgroundColor: '#FFF',
@@ -399,5 +299,13 @@ const styles = StyleSheet.create({
   resendButton: {
     color: '#007AFF',
     fontSize: moderateScale(14),
+  },
+  verifyButton: {
+    height: verticalScale(50),
+    borderRadius: moderateScale(8),
+    marginTop: verticalScale(10),
+    minWidth: moderateScale(100),
+    paddingVertical: verticalScale(8),
+    marginBottom: verticalScale(60),
   },
 });

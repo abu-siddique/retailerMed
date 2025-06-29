@@ -4,7 +4,6 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { moderateScale, moderateVerticalScale } from 'react-native-size-matters'
-import FeedHeader from '../../../component/feed_header'
 
 // Create a context to expose the drawer navigation
 export const DrawerContext = React.createContext(null)
@@ -27,7 +26,7 @@ const TabsLayout = () => {
 
 // With this:
 try {
-  const componentModule = require('@/component/services');
+  const componentModule = require('@/component');
   console.log('Path resolution successful:', Object.keys(componentModule));
 } catch (error) {
   console.error('Path resolution failed:', error.message);
@@ -52,7 +51,7 @@ try {
           tabBarHideOnKeyboard: true,
           tabBarPressColor: 'transparent', // Remove ripple effect on Android
           tabBarPressOpacity: 1, // Remove opacity change on iOS
-          header: () => <FeedHeader />
+          
         }}>
         <Tabs.Screen
           name="index"

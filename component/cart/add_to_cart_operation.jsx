@@ -1,14 +1,13 @@
-import { exsitItem } from '@/utils';
+import { existItem } from '@/utils';
 import React, { useEffect, useState } from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
-import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
+import { moderateScale, verticalScale } from 'react-native-size-matters';
 import Toast from 'react-native-toast-message';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../common/button';
 import QuantityModal from '../common/quantity_modal';
 import useUserInfo from '../hooks/use_user_info';
 import useVerify from '../hooks/use_verify';
-import ProductPrice from '../product/product_price';
 import { addToCart } from '../store';
 import CartButtons from './cart_buttons';
 
@@ -30,7 +29,11 @@ const AddToCartOperation = ({ product }) => {
 
   // Track item in cart
   useEffect(() => {
-    const item = exsitItem(cartItems, product._id);
+    // Debug logging to identify inconsistencies
+  console.log('Product ID:', product._id);
+  console.log('Cart Items:', cartItems);
+    const item = existItem(cartItems, product._id);
+    console.log('Found in cart:', !!item);
     setCurrentItemInCart(item);
   }, [cartItems, product._id]);
 
@@ -59,8 +62,12 @@ const AddToCartOperation = ({ product }) => {
       addToCart({
         productID: product._id,
         name: product.title,
-        price: product.price,
+        ptr: product.ptr,
+        mrp: product.mrp,
         discount: product.discount,
+        buy: product.buy,
+        get: product.get,
+        gst: product.gst,
         inStock: product.inStock,
         sold: product.sold,
         img: product.images[0],
@@ -90,20 +97,11 @@ const AddToCartOperation = ({ product }) => {
             styles.addButton,
             isButtonPressed && styles.addButtonPressed
           ]}
+          textStyle={styles.addButtonText}
         >
-          Add to Cart
+          Add
         </Button>
       )}
-
-      <View style={styles.priceContainer}>
-        <ProductPrice
-          inStock={product.inStock}
-          discount={product.discount}
-          price={product.price}
-          singleProduct
-        />
-      </View>
-
       {/* Quantity Selection Modal */}
       <QuantityModal 
         visible={modalVisible}
@@ -121,11 +119,11 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: moderateScale(16),
-    backgroundColor: '#FFFFFF',
+    justifyContent: 'center',
+    paddingHorizontal: moderateScale(4),
+    backgroundColor: 'transparent',
     borderTopWidth: 1,
-    borderTopColor: '#E0E0E0',
+    borderTopColor: '#FFFFFF',
     // Pharmacy-themed shadow
     ...Platform.select({
       ios: {
@@ -138,44 +136,41 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
       },
       android: {
-        elevation: 5,
+        elevation: 0,
       },
     }),
   },
-  cartButtonsContainer: {
-    width: scale(180),
-    minWidth: scale(180),
-  },
+  
   addButton: {
-    paddingHorizontal: moderateScale(24),
-    backgroundColor: '#2E7D32', // Pharmacy green
-    borderRadius: moderateScale(8),
-    paddingVertical: verticalScale(12),
-    minWidth: scale(150),
+    paddingVertical: verticalScale(2),
+    paddingHorizontal: moderateScale(8),
+    backgroundColor: '#FFFFFF',
+    borderRadius: moderateScale(4),
+    marginVertical: verticalScale(2),
+    gap: moderateScale(14),
     ...Platform.select({
       ios: {
-        shadowColor: '#1B5E20',
-        shadowOffset: { 
-          width: 0, 
-          height: 2 
-        },
-        shadowOpacity: 0.2,
-        shadowRadius: 3,
+        shadowColor: '#2E7D32',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 2,
       },
       android: {
-        elevation: 4,
+        elevation: 0,
       },
     }),
+    borderWidth: 1,
+    borderColor: '#4caf50',
   },
   addButtonPressed: {
-    backgroundColor: '#1B5E20', // Darker green when pressed
+    backgroundColor: '#F8F8F8', // Very light grey background when pressed
+    borderColor: '#d0d0d0', // Lighter grey border
     transform: [{ scale: 0.98 }],
   },
-  priceContainer: {
-    minWidth: scale(120),
-    alignItems: 'flex-end',
-    padding: moderateScale(8),
-    borderRadius: moderateScale(8),
+  addButtonText: {
+    color: '#4CAF50', // same light green as border
+    fontSize: moderateScale(15),
+    fontWeight: '600',
   },
 });
 
