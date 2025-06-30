@@ -17,6 +17,7 @@ const apiSlice = createApi({
       }
       headers.set('Content-Type', 'application/json');
       headers.set('ngrok-skip-browser-warning', 'true'); // Helps with ngrok issues
+      headers.set('Access-Control-Allow-Origin', '*'); // CORS header for development
       return headers
     },
   }),

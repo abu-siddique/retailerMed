@@ -9,42 +9,65 @@ const CartInfo = props => {
 
   // Store
   const { totalItems, totalPriceToPay, totalMRP } = useSelector(state => state.cart)
+  
+  // Calculate values for invoice
+  const discount = totalMRP - totalPriceToPay
+  const shippingCharges = totalPriceToPay < 2000 ? 50 : 0
+  const subtotalAmount = totalPriceToPay + shippingCharges
+  
+  // Add rounding calculation
+  const roundingValue = Math.round(subtotalAmount) - subtotalAmount
+  const finalAmount = subtotalAmount + roundingValue
 
   // Render
   return (
     <View style={styles.container}>
-      {/* Total cart price */}
+      
+      {/* Total MRP */}
       <View style={styles.priceContainer}>
-        <Text style={styles.label}>
-          Item Price ({formatNumber(totalItems)} items)
-        </Text>
+        <Text style={styles.standardText}>Total (MRP)</Text>
         <View style={styles.flexRowCenter}>
-          <Text>{formatNumber(totalMRP)}</Text>
-          <Text style={styles.currency}>₹</Text>
+          <Text style={styles.standardText}>{formatNumber(totalMRP)}</Text>
+          <Text style={[styles.currency, styles.standardText]}>₹</Text>
         </View>
       </View>
 
-      {/* Total cart amount */}
+      {/* Discount */}
       <View style={styles.rowBetween}>
-        <Text>Cart Total</Text>
+        <Text style={styles.standardText}>Discount</Text>
         <View style={styles.flexRowCenter}>
-          <Text style={styles.amountText}>{formatNumber(totalPriceToPay)}</Text>
-          <Text style={styles.currency}>₹</Text>
+          <Text style={styles.discountText}>- {formatNumber(discount)}</Text>
+          <Text style={[styles.currency, styles.discountText]}>₹</Text>
         </View>
       </View>
 
-      <Text style={styles.shippingText}>
-        Shipping is calculated based on your shipment address, delivery time, weight and volume
-      </Text>
-
-      {/* Total savings */}
+      {/* Shipping charges */}
       <View style={styles.rowBetween}>
-        <Text style={styles.savingsText}>Your savings</Text>
+        <Text style={styles.standardText}>Shipping Charges</Text>
         <View style={styles.flexRowCenter}>
-          <Text style={styles.savingsText}>
-            ({(totalPriceToPay > 0 ? (totalMRP - totalPriceToPay) : 0).toFixed(1)})
-          </Text>
-          <Text style={[styles.currency, styles.savingsText]}>₹</Text>
+          <Text style={styles.standardText}>{formatNumber(shippingCharges)}</Text>
+          <Text style={[styles.currency, styles.standardText]}>₹</Text>
+        </View>
+      </View>
+      
+      {/* Rounding */}
+      <View style={styles.rowBetween}>
+        <Text style={styles.standardText}>Rounded</Text>
+        <View style={styles.flexRowCenter}>
+          <Text style={styles.standardText}>{formatNumber(roundingValue.toFixed(2))}</Text>
+          <Text style={[styles.currency, styles.standardText]}>₹</Text>
+        </View>
+      </View>
+
+      {/* Dashed Divider */}
+      <View style={styles.dashedDivider}></View>
+
+      {/* Total to be paid */}
+      <View style={styles.rowBetween}>
+        <Text style={styles.totalText}>Total to be paid</Text>
+        <View style={styles.flexRowCenter}>
+          <Text style={styles.totalText}>{formatNumber(finalAmount)}</Text>
+          <Text style={[styles.currency, styles.totalText]}>₹</Text>
         </View>
       </View>
     </View>
@@ -58,16 +81,19 @@ const styles = StyleSheet.create({
     marginTop: verticalScale(8),
     rowGap: verticalScale(20),
   },
+  summaryTitle: {
+    fontSize: moderateScale(16),
+    fontWeight: 'bold',
+    marginBottom: verticalScale(10),
+  },
   priceContainer: {
     paddingBottom: verticalScale(8),
-    borderBottomWidth: 1,
-    borderBottomColor: '#e5e7eb',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  label: {
-    fontSize: moderateScale(12),
+  standardText: {
+    fontSize: moderateScale(14),
   },
   flexRowCenter: {
     flexDirection: 'row',
@@ -81,21 +107,27 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  amountText: {
-    fontSize: moderateScale(12),
-  },
-  shippingText: {
+  divider: {
+    height: 1,
+    backgroundColor: '#e5e7eb',
     width: '100%',
-    paddingBottom: verticalScale(8),
-    borderBottomWidth: 1,
-    borderBottomColor: '#e5e7eb',
-    fontSize: moderateScale(12),
-    color: '#6b7280',
   },
-  savingsText: {
-    color: '#ef4444',
-    fontSize: moderateScale(12),
+  dashedDivider: {
+    height: 1,
+    width: '100%',
+    borderStyle: 'dashed',
+    borderWidth: 1,
+    borderColor: '#e5e7eb',
+    borderRadius: 1,
   },
+  totalText: {
+    fontSize: moderateScale(14),
+    fontWeight: 'bold',
+  },
+  discountText: {
+    fontSize: moderateScale(14),
+    color: '#22c55e',  // Green color for discount
+  }
 })
 
 export default CartInfo

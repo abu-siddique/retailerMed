@@ -27,14 +27,13 @@ const CartItem = props => {
       <View style={styles.imageSection}>
         <View style={styles.imageContainer}>
           <ResponsiveImage
-            
             style={styles.image}
             source={{uri: item.img.url}}
             alt={item.name}
           />
         </View>
 
-<CartButtons item={item} />
+          <CartButtons item={item} />
       </View>
 
       {/* Product Info */}
@@ -45,20 +44,23 @@ const CartItem = props => {
 
         {/* Details */}
         <View style={styles.detailsContainer}>
-          {/* Discount Percentage */}
-          {item.discount > 0 && (
-            <View style={styles.discountBadge}>
-              <Text style={styles.badgeText}>{item.discount}% OFF</Text>
-            </View>
-          )}
-          
-          {/* Ice Pack Tag */}
-          {item.isIcePacked && (
-            <View style={styles.icePackBadge}>
-              <Icons.FontAwesome name="snowflake-o" size={14} color="#fff" style={styles.iceIcon} />
-              <Text style={styles.badgeText}>ICE PACKED</Text>
-            </View>
-          )}
+          {/* Discount Row and Tag Row */}
+          <View style={styles.discountRow}>
+            {/* Discount Percentage */}
+            {item.discount > 0 && (
+              <View style={styles.discountBadge}>
+                <Text style={styles.badgeText}>{item.discount}% OFF</Text>
+              </View>
+            )}
+            
+            {/* Ice Pack Tag */}
+            {!item.isIcePacked && (
+              <View style={styles.icePackBadge}>
+                <Icons.FontAwesome name="snowflake-o" size={14} color="#fff" style={styles.iceIcon} />
+                <Text style={styles.badgeText}>ICE PACKED</Text>
+              </View>
+            )}
+          </View>
           
           {/* Price Details */}
           <View style={styles.priceDetailsRow}>
@@ -81,7 +83,7 @@ const CartItem = props => {
             </View>
             <View style={styles.rightPriceDetails}>
               <Text style={styles.totalPriceText}>
-                ₹{formatNumber(calculateTotalPrice(item))}
+               = {formatNumber(calculateTotalPrice(item))} ₹
               </Text>
             </View>
           </View>
@@ -106,11 +108,11 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     paddingHorizontal: moderateScale(16),
-    paddingVertical: verticalScale(20),
-    gap: moderateScale(16),
+    paddingVertical: verticalScale(12),
+    gap: moderateScale(12),
   },
   imageSection: {
-    gap: verticalScale(16),
+    gap: verticalScale(4),
     
   },
   imageContainer: {
@@ -142,14 +144,15 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   productName: {
-    marginBottom: verticalScale(12),
+    marginBottom: verticalScale(8),
     fontSize: moderateScale(14),
   },
   detailsContainer: {
-    gap: verticalScale(12),
+    gap: verticalScale(4),
   },
   discountRow: {
-    marginBottom: verticalScale(4),
+    flexDirection: 'row',
+    gap: moderateScale(8),
   },
   discountText: {
     color: '#16a34a',
@@ -184,9 +187,10 @@ const styles = StyleSheet.create({
     marginRight: moderateScale(2),
   },
   priceDetailsRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    gap: moderateScale(4),
   },
   leftPriceDetails: {
     flex: 1,
@@ -197,10 +201,17 @@ const styles = StyleSheet.create({
   },
   rightPriceDetails: {
     alignItems: 'flex-end',
+    borderWidth: StyleSheet.hairlineWidth,
+    paddingHorizontal: moderateScale(8),
+    paddingVertical: verticalScale(4),
+    marginTop: verticalScale(4),
+    borderRadius: moderateScale(4),
+    borderColor: '#CEC9C8',
+    
   },
   totalPriceText: {
     fontSize: moderateScale(14),
-    fontWeight: '600',
+    fontWeight: '500',
     color: '#111827',
   },
   offerRow: {
@@ -221,7 +232,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   priceLabel: {
-    fontSize: moderateScale(11),
+    fontSize: moderateScale(12),
     color: '#6b7280',
   },
   ptrValue: {
