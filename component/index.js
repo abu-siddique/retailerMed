@@ -29,6 +29,7 @@ export { default as TextField } from './common/text_field';
 // Empty list components
 export { default as EmptyCustomList } from './emptylist/empty_custom_list';
 export { default as EmptyOrderList } from './emptylist/empty_order_list';
+export { default as EmptySearchList } from './emptylist/empty_search_list';
 
 // Hooks
 export { default as useUserInfo } from './hooks/use_user_info';

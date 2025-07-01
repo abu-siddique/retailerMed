@@ -4,15 +4,16 @@ import { moderateScale, moderateVerticalScale } from 'react-native-size-matters'
 
 // Components
 import ResponsiveImage from '../common/resonsive_image';
-import DiscountProduct from './discount_product';
 import OfferBadge from './offer_badge';
 import ProductPrice from './product_price';
 import StockIndicator from './stock_indicator';
 
 // Utils
 import truncate from '../../utils/truncate';
+import AddToCartOperation from '../cart/add_to_cart_operation';
+import DiscountProduct from './discount_product';
 
-const ProductCard = ({ product, vertical = false }) => {
+const ProductCard = ({ product, vertical = false, cartops = false }) => {
   // Format purchase count for medicines
   const formatPurchases = (count) => {
     if (!count) return 'New arrival';
@@ -87,6 +88,7 @@ const ProductCard = ({ product, vertical = false }) => {
               {product.dosageForm && (
                 <Text style={styles.dosageForm}>{product.dosageForm}</Text>
               )}
+             
             </View>
           )}  
 
@@ -97,16 +99,31 @@ const ProductCard = ({ product, vertical = false }) => {
             </View>
 
             <View style={styles.priceContainer}>
-              <ProductPrice
-                mrp={product.mrp}
-                ptr={product.ptr}
-                singleProduct={vertical}
-                inStock={product.inStock}
-              />
-              {!vertical && <DiscountProduct discount={product.discount} />}
-            </View>
+                {!cartops && (
+                  <ProductPrice
+                    mrp={product.mrp}
+                    ptr={product.ptr}
+                    singleProduct={vertical}
+                    inStock={product.inStock}
+                  />
+                )}
+                {!vertical && <DiscountProduct discount={product.discount} />}
+              </View>
           </View>
         </View>
+        { cartops && (
+
+            <View style={{flex:1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginHorizontal: moderateScale(8)}}>
+            <ProductPrice
+                      mrp={product.mrp}
+                      ptr={product.ptr}
+                      singleProduct={vertical}
+                      inStock={product.inStock}
+                    />
+            <AddToCartOperation product={product}/>
+            </View>
+
+        )}
       </Pressable>
     </Link>
   );

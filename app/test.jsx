@@ -31,6 +31,7 @@ import DiscountCartItem from '../component/cart/discount_cart_item';
 import HorizontalProductCarousel from '../component/common/horizontal_product_carousel';
 import ResponsiveImage from '../component/common/resonsive_image';
 import ShowWrapperExample from '../component/common/show_wrapper_example';
+import EmptySearchList from '../component/emptylist/empty_search_list';
 import FreeShipping from '../component/FreeShipping';
 import Description from '../component/product/description';
 import ImageGallery from '../component/product/image_gallary';
@@ -847,7 +848,7 @@ const { cartItems, totalItems, totalPrice, totalDiscount } = useSelector(state =
   
     return (
       <ScrollView> 
-       
+       <EmptySearchList/>
         <CartScreen/>
 
 <SigninPromoRenderer/>

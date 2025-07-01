@@ -2,7 +2,6 @@
     "/api/checkout": "/checkout",
     "/api/placeOrder": "/orders",
     "/api/userProfile": "/userProfile",
-    "/api/products": "/products",
     "/api/cart": "/cart",
     "/api/auth/login": "/auth",
     "/api/auth/register": "/users",
@@ -10,5 +9,6 @@
     "/api/user": "/users",
     "/api/category": "/categories",
     "/api/category/:id": "/categories/:id",
-    "/api/feed": "/api/feed"
+    "/api/feed": "/api/feed",
+    "/api/products": "/api/products"
 }
